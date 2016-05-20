@@ -1,0 +1,6 @@
+[90m<!-- Well, more like HTML... -->[39m
+<[34mstyle[39m>
+[34m.foo[39m {
+  [33mcolor[39m: red;
+}
+</[34mstyle[39m>

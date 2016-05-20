@@ -1,0 +1,10 @@
+[32mprotocol[39m [33mProtocol[39m {
+  [32mfunc[39m [34mf1[39m()
+  [32mfunc[39m [34mf2[39m()
+}
+
+[32mclass[39m [33mMyClass[39m {
+  [32mfunc[39m [34mf[39m() {
+    [32mreturn[39m [36mtrue[39m
+  }
+}

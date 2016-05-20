@@ -1,0 +1,2 @@
+float_var := [36m1.0e10f[39m
+complex_var := [36m1.2e5[39m+[36m2.3i[39m

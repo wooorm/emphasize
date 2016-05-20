@@ -1,0 +1,3 @@
+[32mfn[39m [34msqr[39m(i: [32mi32[39m) { i * i }
+[32mtrait[39m [33mMinimum[39m : [31mCopy[39m {}
+[32mpub[39m [32mtrait[39m [33mBuilder[39m [32mwhere[39m [32mSelf[39m: [31mSized[39m + [31mIterator[39m<Item=Event> {}

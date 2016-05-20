@@ -1,0 +1,8 @@
+[90m//------ underscore.js ------[39m
+[32mexport[39m [32mdefault[39m [32mfunction[39m (obj) {};
+[32mexport[39m [32mfunction[39m [34meach[39m(obj, iterator, context) {};
+[32mexport[39m { each [32mas[39m forEach };
+[32mexport[39m [32mfunction[39m [34msomething[39m() {};
+
+[90m//------ main.js ------[39m
+[32mimport[39m _, { each, something [32mas[39m otherthing } [32mfrom[39m [36m'underscore'[39m;

@@ -1,0 +1,3 @@
+[90m# numbers aren't highlighted in bash as their semantics is[39m
+[90m# not strictly defined for command line parameters[39m
+$ tail -10 access.log

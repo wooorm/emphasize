@@ -1,0 +1,6 @@
+[32mPOST[39m [36m/task?id=1[39m HTTP/1.1
+[33mHost[39m: example.org
+[33mContent-Type[39m: application/json; charset=utf-8
+[33mContent-Length[39m: 19
+
+{[33m"status"[39m: [36m"ok"[39m, [33m"extended"[39m: [36mtrue[39m}

@@ -1,0 +1,18 @@
+@font-face {
+  font-family: Alpha;
+  src: url('Bravo.otf');
+}
+
+body, .charlie, #delta {
+  color: #bada55;
+  background-color: rgba(33, 33, 33, 0.33);
+  font-family: "Alpha", sans-serif;
+}
+
+@import url(echo.css);
+
+@media print {
+  a[href^=http]::after {
+    content: attr(href)
+  }
+}

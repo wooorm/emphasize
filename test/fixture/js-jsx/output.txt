@@ -1,0 +1,6 @@
+[32mvar[39m jsx = <[34mnode[39m/>;
+[32mvar[39m jsx = <[34mnode[39m><child/></[34mnode[39m>;
+[32mvar[39m jsx = <[34mnode[39m>...<child>...</child></[34mnode[39m>;
+[32mvar[39m jsx = <[34mdiv[39m><br /></[34mdiv[39m>;
+[32mvar[39m x = [36m5[39m;
+[32mreturn[39m (<[34mnode[39m [33mattr[39m=[36m"value"[39m></[34mnode[39m>);

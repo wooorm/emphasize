@@ -1,0 +1,14 @@
+[34mreturnNull[39m = -> [36mnull[39m
+[34mreturnTrue[39m = () -> [36mtrue[39m
+[34msquare[39m = (x) -> x * x
+
+npmWishlist.sha256 = (str) ->
+    [32mthrow[39m [32mnew[39m Error()
+
+str.split([36m" "[39m).map((m) -> m.charCodeAt([36m0[39m))
+
+fs.readFile([36m"package.json"[39m, [36m"utf-8"[39m, (err, content) ->
+  data = JSON.parse(content)
+
+  data.version
+)

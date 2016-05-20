@@ -1,0 +1,32 @@
+[32mfunction[39m [34mvisibleTodoFilter[39m(state = 'watch', action) {
+  [32mswitch[39m (action.type) {
+  [32mcase[39m [36m'CHANGE_VISIBLE_FILTER'[39m:
+    [32mreturn[39m action.filter;
+  [32mdefault[39m:
+    [32mreturn[39m state;
+  }
+}
+
+[32mfunction[39m [34mtodos[39m(state, action) {
+  [32mswitch[39m (action.type) {
+  [32mcase[39m [36m'ADD_TODO'[39m:
+    [32mreturn[39m [...state, {
+      text: action.text,
+      completed: [36mfalse[39m
+    }];
+  [32mcase[39m [36m'COMPLETE_TODO'[39m:
+    [32mreturn[39m [
+      ...state.slice([36m0[39m, action.index),
+      [31mObject[39m.assign({}, state[action.index], {
+        completed: [36mtrue[39m
+      }),
+      ...state.slice(action.index + [36m1[39m)
+    ]
+  [32mdefault[39m:
+    [32mreturn[39m state;
+  }
+}
+
+[32mimport[39m { combineReducers, createStore } [32mfrom[39m [36m'redux'[39m;
+[32mlet[39m reducer = combineReducers({ visibleTodoFilter, todos });
+[32mlet[39m store = createStore(reducer);

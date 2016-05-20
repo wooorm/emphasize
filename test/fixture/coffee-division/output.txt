@@ -1,0 +1,8 @@
+[90m# Divisions[39m
+x = [36m6[39m/foo/i
+x = [36m6[39m /foo
+x = [36m6[39m / foo
+x = [36m6[39m /foo * [36m2[39m/gm
+x = f /foo
+x = f / foo / gm
+x = f /foo * [36m2[39m/[36m6[39m

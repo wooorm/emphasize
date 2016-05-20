@@ -1,0 +1,9 @@
+[35m<?[39mxml version=[36m"1.0"[39m[35m?>[39m
+<[34mresponse[39m [33mvalue[39m=[36m"ok"[39m [33mxml:lang[39m=[36m"en"[39m>
+  <[34mtext[39m>Ok</[34mtext[39m>
+  <[34mcomment[39m [33mhtml_allowed[39m=[36m"true"[39m/>
+  <[34mns1:description[39m><![CDATA[
+  CDATA is <not> magical.
+  ]]></[34mns1:description[39m>
+  <[34ma[39m></[34ma[39m> <[34ma[39m/>
+</[34mresponse[39m>

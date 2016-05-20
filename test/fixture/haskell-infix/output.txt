@@ -1,0 +1,3 @@
+[32minfix[39m [36m3[39m `foo`
+[32minfixl[39m [36m6[39m `bar`
+[32minfixr[39m [36m9[39m `baz`

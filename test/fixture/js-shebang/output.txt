@@ -1,0 +1,3 @@
+[35m#!/usr/bin/env node[39m
+
+[32mvar[39m a = [36m1[39m;

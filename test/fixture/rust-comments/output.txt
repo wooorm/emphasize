@@ -1,0 +1,3 @@
+[90m/* rust has
+/* nested /* block */ */
+*/[39m comments

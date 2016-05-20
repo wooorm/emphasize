@@ -1,0 +1,11 @@
+[32mclass[39m [33mCar[39m [32mextends[39m [33mVehicle[39m {
+  [32mconstructor[39m(speed, cost) {
+    [32msuper[39m(speed);
+
+    [32mvar[39m c = [31mSymbol[39m([36m'cost'[39m);
+    [32mthis[39m[c] = cost;
+
+    [32mthis[39m.intro = [36m`This is a car runs at
+      [35m${speed}[36m.`[39m;
+  }
+}

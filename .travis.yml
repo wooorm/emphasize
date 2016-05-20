@@ -1,0 +1,26 @@
+language: node_js
+node_js:
+- '0.10'
+- '0.11'
+- '0.12'
+- '4.0'
+- '5.0'
+- '6.0'
+sudo: false
+after_script: npm install codecov.io && cat ./coverage/lcov.info | codecov
+deploy:
+  - provider: npm
+    email: tituswormer@gmail.com
+    api_key:
+        secure: CZGXfZzumU36BwPRW6M1eR9w5KdTEf8WZ/g1uPZCMzCq+7mrvdLZk32vSpv7MDeUZBY2lJt/M4c/DgXcub5tTOny3rvFzbEawIVfQtS8oeUJB5BZ6j3m3hlUAA2PB663RY1Tg6jV4ZY7mYE8cfCYoRXvKEPenQBjo7URiQMXVFNxXhezT4DEZxRxggDG46G90dwbWVCb/dBw+LriGWd2ZrP6kGrsoiusJFNC//yePH0zmfntdB0Qz6WVIEz4h1FkzubqIl0xUIvAPqKSjUjvzIM4dn12uPefIbsMcOx5j0CPC/7XE+lCEsRWLSqHTrYl0E6x+wPUKl4iWvkXynPlPwh+iAfM0PM7pWDubGhibOllfAwmNpplrybtuogcr8dxNWgtgnP1lz3HB6WxmhEe7wCGeQIxhdrdmbvUi0vrGIrLL8nFf0OEqiHgz722Nl2TT0djRuWZGnFug++NQd9SByWXQR6/4ONUxDf8SKAd4Wh4DAtoA32mMxolC1ZfhFSsojya96U7s45Fy1KztFd9Zij72jjhKuiShsgIJA3ivQGRqOQEC+KJEZcb1O5R8syA6cOVOeL96Nr93y9TN4PN7PiGDxe5151Avx1CMKoWVs73OE0JxzgkOnGZ/lGv606tAu9Bt7EwRfSEu/7XNowUXZrDNOYlsy41eH6OktxxOoc=
+    on:
+      node: '6.0'
+      tags: true
+  - provider: releases
+    api_key:
+        secure: MROn2agMmU0BTXdTha/Wgc/aCdoC0Zft59hR2eefCV1gLA6NCM7IZvfBdIACxAJebaYw85ePjLiy75MCu9kdo02/W3eejEKosHPLtrqxTVVPVsz5GVblz9mWyEEVbXpVcF69QvD0VBXAsc8hqcnccnrlzJoJkpuvzRMjCazA/2vjpNjLUswWejVJZPRtG8h7QCH2ASDFLsgSrA8xInGe/LWZs1XDHNHEEa3mvzfd0UFa/AQVV0BwqUuRA/LPq+1AnS+tWqQFqQlbiXwLnAyWLVNV4/2gsTshPrlOz60YxNCU1nyUiUbbsP+NIOaatZ+nWCeiN8AcgnwYAe1vjUfWr7IjjlGdpwV6Wu2d06blAC+lNQy10McSbjW6w2FrEeHb/bIDLqsN3akk1LPiDj7ztWydd70ExLNKiDljBrmJLyAJPMglt+ny6RtSQZCB025SXF5U1Kgv6OT83yckBSjdqBAEIJblLRnH1tLUf27+3c7nsR8rNhQLfttzALddtzqGAFC3Htvjf9O/rQV84ds60SDxOSpqJOIzCHZYfd+w3nxlJE6oiL9eknlVk5/pvEnI1BDRchQixxbNcyexIcs62gjg7mp8PsuvwMNN0ZpUps7FQ7AIqqsICVMM459vTvPwph3vS2uBPQMCnZBSVepqiYtCEmvCsZZEpaah1qFWxv0=
+    file:
+      - "emphasize.js"
+      - "emphasize.min.js"
+    on:
+      tags: true

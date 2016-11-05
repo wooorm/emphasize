@@ -7,31 +7,15 @@ Syntax highlighting in ANSI.  Like [highlight.js][highlight] (through
 
 ## Installation
 
-[npm][npm-install]:
+[npm][]:
 
 ```bash
 npm install emphasize
 ```
 
-**emphasize** is also available as an AMD, CommonJS, and globals module,
-[uncompressed and compressed][releases].
-
 ## Usage
 
-Dependencies:
-
-```javascript
-var fs = require('fs');
-var emphasize = require('emphasize');
-```
-
-Read a sample file:
-
-```javascript
-var doc = fs.readFileSync('./example.css', 'utf8');
-```
-
-Which yields:
+Say `example.css` looks as follows:
 
 ```css
 @font-face {
@@ -54,13 +38,18 @@ body, .charlie, #delta {
 }
 ```
 
-Compile:
+And `example.js` contains the following:
 
 ```javascript
+var fs = require('fs');
+var emphasize = require('emphasize');
+
+var doc = fs.readFileSync('./example.css', 'utf8');
+
 var output = emphasize.highlightAuto(doc).value;
 ```
 
-Yields:
+Now, running `node example` yields:
 
 ```txt
 @\u001b[32mfont-face\u001b[39m {
@@ -93,65 +82,71 @@ And looks as follows:
 
 Parse `value` according to the `language` grammar.
 
-**Parameters**
+###### Parameters
 
-*   `name` (`string`) — See list of [names and aliases][names];
-*   `value` (`string`) — Source to highlight;
-*   `sheet` ([`Sheet?`][sheet], optional) — See below.
+*   `name` (`string`)
+    — See list of [names and aliases][names];
+*   `value` (`string`)
+    — Source to highlight;
+*   `sheet` ([`Sheet?`][sheet], optional)
+    — See below.
 
-**Returns**: `Object`:
+###### Returns
+
+`Object`:
 
 *   `relevance` (`number`)
     — Integer representing how sure **emphasize** is the given code is
     in the given language;
+*   `language` (`string`)
+    — The given `language`;
+*   `value` (`string`)
+    — Given document, wrapped in ANSI sequences.
 
-*   `language` (`string`) — The given `language`;
-
-*   `value` (`string`) — Given document, wrapped in ANSI sequences.
-
-### `emphasize.highlightAuto(value[, options | sheet])`
+### `emphasize.highlightAuto(value[, sheet | options])`
 
 Parse `value` by guessing its grammar.
 
-**Parameters**
+###### Parameters
 
-*   `value` (`string`) — Source to highlight;
-
+*   `value` (`string`)
+    — Source to highlight;
+*   `sheet` ([`Sheet?`][sheet], optional)
+    — See below;
 *   `options` (`Object?`, optional):
 
-    *   `sheet` ([`Sheet?`][sheet], optional) — See below;
-
+    *   `sheet` ([`Sheet?`][sheet], optional)
+        — See below;
     *   `subset` (`Array.<string>?`, optional, defaults to
         all registered languages.)
         — List of allowed languages.
 
-*   `sheet` ([`Sheet?`][sheet], optional) — See below.
+###### Returns
 
-**Returns**: `Object`:
+`Object`:
 
 *   `relevance` (`number`)
     — Integer representing how sure **emphasize** is the given code
     is in the detected language;
-
-*   `language` (`string`) — Detected `language`;
-
-*   `value` (`string`) — Given document, wrapped in ANSI sequences;
-
+*   `language` (`string`)
+    — Detected `language`;
+*   `value` (`string`)
+    — Given document, wrapped in ANSI sequences;
 *   `secondBest` (`Object?`)
     — Object with the same structure as the top returned object, but
-    containing information for the second-best result.
-    Can be `null`.
+    containing information for the second-best result.  Can be `null`.
 
 ### `emphasize.registerLanguage(name, syntax)`
 
 Register a syntax.  Useful in the browser or with custom grammars.
 
-**Parameters**
+###### Parameters
 
-*   `name` (`string`) — Name of language;
-
-*   `syntax` (`Function`) — Syntax highlighter, see
-    [`highlight.js`s docs][syntax] for more information.
+*   `name` (`string`)
+    — Name of language;
+*   `syntax` (`Function`)
+    — Syntax highlighter, see [`highlight.js`s docs][syntax] for more
+    information.
 
 ### `Sheet`
 
@@ -167,12 +162,12 @@ An abbreviated example is as follows:
 
 ```js
 {
-    'comment': chalk.gray,
-    'meta meta-string': chalk.cyan,
-    'meta keyword': chalk.magenta,
-    'emphasis': chalk.italic,
-    'strong': chalk.bold,
-    'formula': chalk.inverse
+  'comment': chalk.gray,
+  'meta meta-string': chalk.cyan,
+  'meta keyword': chalk.magenta,
+  'emphasis': chalk.italic,
+  'strong': chalk.bold,
+  'formula': chalk.inverse
 };
 ```
 
@@ -208,9 +203,7 @@ emphasize.highlight('js', '"use strict";').value;
 
 [codecov]: https://codecov.io/github/wooorm/emphasize
 
-[npm-install]: https://docs.npmjs.com/cli/install
-
-[releases]: https://github.com/wooorm/emphasize/releases
+[npm]: https://docs.npmjs.com/cli/install
 
 [license]: LICENSE
 

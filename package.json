@@ -39,7 +39,7 @@
     "xo": "^0.17.0"
   },
   "scripts": {
-    "build-registry": "node script/build-registry",
+    "build-registry": "node build",
     "build-md": "remark . --quiet --frail --output",
     "build-bundle": "browserify index.js --bare -s emphasize > emphasize.js",
     "build-mangle": "esmangle emphasize.js > emphasize.min.js",

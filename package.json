@@ -35,18 +35,14 @@
     "is-hidden": "^1.0.1",
     "istanbul": "^0.4.0",
     "negate": "^1.0.0",
-    "remark": "^4.0.0",
-    "remark-comment-config": "^3.0.0",
-    "remark-github": "^4.0.1",
-    "remark-lint": "^3.0.0",
-    "remark-usage": "^3.0.0",
-    "remark-validate-links": "^3.0.0",
+    "remark-cli": "^2.1.0",
+    "remark-preset-wooorm": "^1.0.0",
     "tape": "^4.0.0",
     "xo": "^0.17.0"
   },
   "scripts": {
     "build-registry": "node script/build-registry",
-    "build-md": "remark . --quiet --frail",
+    "build-md": "remark . --quiet --frail --output",
     "build-bundle": "browserify index.js --bare -s emphasize > emphasize.js",
     "build-mangle": "esmangle emphasize.js > emphasize.min.js",
     "build": "npm run build-registry && npm run build-md && npm run build-bundle && npm run build-mangle",
@@ -63,5 +59,8 @@
     "ignore": [
       "emphasize.js"
     ]
+  },
+  "remarkConfig": {
+    "presets": "wooorm"
   }
 }

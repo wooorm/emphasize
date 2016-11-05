@@ -21,7 +21,7 @@ npm install emphasize
 Dependencies:
 
 ```javascript
-var fs = require('fs')
+var fs = require('fs');
 var emphasize = require('emphasize');
 ```
 

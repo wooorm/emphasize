@@ -1,4 +1,4 @@
-[32mfunction[39m [34mvisibleTodoFilter[39m(state = 'watch', action) {
+[32mfunction[39m [34mvisibleTodoFilter[39m(state = [36m'watch'[39m, action) {
   [32mswitch[39m (action.type) {
   [32mcase[39m [36m'CHANGE_VISIBLE_FILTER'[39m:
     [32mreturn[39m action.filter;
@@ -11,14 +11,14 @@
   [32mswitch[39m (action.type) {
   [32mcase[39m [36m'ADD_TODO'[39m:
     [32mreturn[39m [...state, {
-      text: action.text,
-      completed: [36mfalse[39m
+      [33mtext[39m: action.text,
+      [33mcompleted[39m: [36mfalse[39m
     }];
   [32mcase[39m [36m'COMPLETE_TODO'[39m:
     [32mreturn[39m [
       ...state.slice([36m0[39m, action.index),
       [31mObject[39m.assign({}, state[action.index], {
-        completed: [36mtrue[39m
+        [33mcompleted[39m: [36mtrue[39m
       }),
       ...state.slice(action.index + [36m1[39m)
     ]

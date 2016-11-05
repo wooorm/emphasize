@@ -40,7 +40,7 @@ test('emphasize.highlight(language, value[, sheet])', function (t) {
     function () {
       emphasize.highlight('fooscript', '');
     },
-    /Expected `fooscript` to be registered/,
+    /^Error: Unknown language: `fooscript` is not registered$/,
     'should throw when given an unknown `language`'
   );
 
@@ -164,7 +164,7 @@ test('emphasize.highlightAuto(value[, settings | sheet])', function (t) {
 
     st.equal(
       result.secondBest.language,
-      'mipsasm',
+      'abnf',
       'should return a `secondBest` `language`'
     );
 

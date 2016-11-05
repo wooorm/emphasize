@@ -8,11 +8,7 @@
 
 'use strict';
 
-/* eslint-env commonjs */
-
 var emphasize = require('./lib/core.js');
-
-/* jscs:disable maximumLineLength */
 
 emphasize.registerLanguage('1c', require('highlight.js/lib/languages/1c'));
 emphasize.registerLanguage('accesslog', require('highlight.js/lib/languages/accesslog'));

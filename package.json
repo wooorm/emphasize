@@ -31,18 +31,18 @@
   },
   "devDependencies": {
     "browserify": "^13.0.0",
-    "eslint": "^2.0.0",
     "esmangle": "^1.0.0",
+    "is-hidden": "^1.0.1",
     "istanbul": "^0.4.0",
-    "jscs": "^3.0.0",
-    "jscs-jsdoc": "^2.0.0",
+    "negate": "^1.0.0",
     "remark": "^4.0.0",
     "remark-comment-config": "^3.0.0",
     "remark-github": "^4.0.1",
     "remark-lint": "^3.0.0",
     "remark-usage": "^3.0.0",
     "remark-validate-links": "^3.0.0",
-    "tape": "^4.0.0"
+    "tape": "^4.0.0",
+    "xo": "^0.17.0"
   },
   "scripts": {
     "build-registry": "node script/build-registry",
@@ -50,11 +50,18 @@
     "build-bundle": "browserify index.js --bare -s emphasize > emphasize.js",
     "build-mangle": "esmangle emphasize.js > emphasize.min.js",
     "build": "npm run build-registry && npm run build-md && npm run build-bundle && npm run build-mangle",
-    "lint-api": "eslint .",
-    "lint-style": "jscs --reporter inline .",
-    "lint": "npm run lint-api && npm run lint-style",
+    "lint": "xo",
     "test-api": "node test/index.js",
     "test-coverage": "istanbul cover test/index.js",
     "test": "npm run build && npm run lint && npm run test-coverage"
+  },
+  "xo": {
+    "space": true,
+    "rules": {
+      "guard-for-in": "off"
+    },
+    "ignore": [
+      "emphasize.js"
+    ]
   }
 }

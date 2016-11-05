@@ -1,5 +1,5 @@
 // Dependencies:
-var fs = require('fs')
+var fs = require('fs');
 var emphasize = require('./index.js');
 
 // Read a sample file:

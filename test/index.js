@@ -1,6 +1,5 @@
 'use strict';
 
-/* Dependencies. */
 var fs = require('fs');
 var path = require('path');
 var test = require('tape');
@@ -16,7 +15,6 @@ var FIXTURES = path.join(__dirname, 'fixture');
 var INPUT = 'input.txt';
 var OUTPUT = 'output.txt';
 
-/* Tests. */
 test('emphasize.highlight(language, value[, sheet])', function (t) {
   var result = emphasize.highlight('js', '');
 

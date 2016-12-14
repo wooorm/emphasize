@@ -30,7 +30,6 @@
     "browserify": "^13.0.0",
     "esmangle": "^1.0.0",
     "is-hidden": "^1.0.1",
-    "istanbul": "^0.4.0",
     "negate": "^1.0.0",
     "nyc": "^10.0.0",
     "remark-cli": "^2.1.0",

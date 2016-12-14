@@ -102,6 +102,7 @@ emphasize.registerLanguage('less', require('highlight.js/lib/languages/less'));
 emphasize.registerLanguage('lisp', require('highlight.js/lib/languages/lisp'));
 emphasize.registerLanguage('livecodeserver', require('highlight.js/lib/languages/livecodeserver'));
 emphasize.registerLanguage('livescript', require('highlight.js/lib/languages/livescript'));
+emphasize.registerLanguage('llvm', require('highlight.js/lib/languages/llvm'));
 emphasize.registerLanguage('lsl', require('highlight.js/lib/languages/lsl'));
 emphasize.registerLanguage('lua', require('highlight.js/lib/languages/lua'));
 emphasize.registerLanguage('makefile', require('highlight.js/lib/languages/makefile'));

@@ -32,10 +32,10 @@
     "is-hidden": "^1.0.1",
     "negate": "^1.0.0",
     "nyc": "^10.0.0",
-    "remark-cli": "^2.1.0",
-    "remark-preset-wooorm": "^1.0.0",
+    "remark-cli": "^3.0.0",
+    "remark-preset-wooorm": "^2.0.0",
     "tape": "^4.0.0",
-    "xo": "^0.17.0"
+    "xo": "^0.18.0"
   },
   "scripts": {
     "build-registry": "node build",
@@ -56,14 +56,18 @@
   },
   "xo": {
     "space": true,
+    "esnext": false,
     "rules": {
-      "guard-for-in": "off"
+      "guard-for-in": "off",
+      "no-multi-assign": "off"
     },
     "ignore": [
       "emphasize.js"
     ]
   },
   "remarkConfig": {
-    "presets": "wooorm"
+    "plugins": [
+      "preset-wooorm"
+    ]
   }
 }

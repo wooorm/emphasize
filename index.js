@@ -94,6 +94,7 @@ emphasize.registerLanguage('ini', require('highlight.js/lib/languages/ini'));
 emphasize.registerLanguage('irpf90', require('highlight.js/lib/languages/irpf90'));
 emphasize.registerLanguage('java', require('highlight.js/lib/languages/java'));
 emphasize.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
+emphasize.registerLanguage('jboss-cli', require('highlight.js/lib/languages/jboss-cli'));
 emphasize.registerLanguage('json', require('highlight.js/lib/languages/json'));
 emphasize.registerLanguage('julia', require('highlight.js/lib/languages/julia'));
 emphasize.registerLanguage('kotlin', require('highlight.js/lib/languages/kotlin'));
@@ -152,6 +153,7 @@ emphasize.registerLanguage('scala', require('highlight.js/lib/languages/scala'))
 emphasize.registerLanguage('scheme', require('highlight.js/lib/languages/scheme'));
 emphasize.registerLanguage('scilab', require('highlight.js/lib/languages/scilab'));
 emphasize.registerLanguage('scss', require('highlight.js/lib/languages/scss'));
+emphasize.registerLanguage('shell', require('highlight.js/lib/languages/shell'));
 emphasize.registerLanguage('smali', require('highlight.js/lib/languages/smali'));
 emphasize.registerLanguage('smalltalk', require('highlight.js/lib/languages/smalltalk'));
 emphasize.registerLanguage('sml', require('highlight.js/lib/languages/sml'));

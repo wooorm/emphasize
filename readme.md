@@ -3,7 +3,7 @@
 Syntax highlighting in ANSI.  Like [highlight.js][highlight] (through
 [lowlight][]), but for the terminal.
 
-**emphasize** supports [all 172 syntaxes][names] of [highlight.js][highlight].
+**emphasize** supports [all 174 syntaxes][names] of [highlight.js][highlight].
 
 ## Installation
 

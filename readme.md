@@ -1,9 +1,9 @@
 # emphasize [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
 
-Syntax highlighting in ANSI.  Like [highlight.js][highlight] (through
-[lowlight][]), but for the terminal.
+Syntax highlighting in ANSI.  Like [highlight.js][hljs] (through [lowlight][]),
+but for the terminal.
 
-**emphasize** supports [all 174 syntaxes][names] of [highlight.js][highlight].
+`emphasize` supports [all 174 syntaxes][names] of [highlight.js][hljs].
 
 ## Installation
 
@@ -78,79 +78,29 @@ And looks as follows:
 
 ## API
 
+### `emphasize.registerLanguage(name, syntax)`
+
+Register a syntax.  Like [`low.registerLanguage()`][register-language].
+
 ### `emphasize.highlight(language, value[, sheet])`
 
-Parse `value` according to the `language` grammar.
+Highlight `value` as a `language` grammar.  Like [`low.highlight()`][highlight],
+but the return object’s `value` property is a string instead of HAST nodes.
 
-###### Parameters
-
-*   `name` (`string`)
-    — See list of [names and aliases][names];
-*   `value` (`string`)
-    — Source to highlight;
-*   `sheet` ([`Sheet?`][sheet], optional)
-    — See below.
-
-###### Returns
-
-`Object`:
-
-*   `relevance` (`number`)
-    — Integer representing how sure **emphasize** is the given code is
-    in the given language;
-*   `language` (`string`)
-    — The given `language`;
-*   `value` (`string`)
-    — Given document, wrapped in ANSI sequences.
+You can pass in a `sheet` ([`Sheet?`][sheet], optional) to configure the theme.
 
 ### `emphasize.highlightAuto(value[, sheet | options])`
 
-Parse `value` by guessing its grammar.
+Highlight `value` by guessing its grammar.  Like
+[`low.highlightAuto()`][highlight-auto], but the return object’s `value`
+property is a string instead of HAST nodes.
 
-###### Parameters
-
-*   `value` (`string`)
-    — Source to highlight;
-*   `sheet` ([`Sheet?`][sheet], optional)
-    — See below;
-*   `options` (`Object?`, optional):
-
-    *   `sheet` ([`Sheet?`][sheet], optional)
-        — See below;
-    *   `subset` (`Array.<string>?`, optional, defaults to
-        all registered languages.)
-        — List of allowed languages.
-
-###### Returns
-
-`Object`:
-
-*   `relevance` (`number`)
-    — Integer representing how sure **emphasize** is the given code
-    is in the detected language;
-*   `language` (`string`)
-    — Detected `language`;
-*   `value` (`string`)
-    — Given document, wrapped in ANSI sequences;
-*   `secondBest` (`Object?`)
-    — Object with the same structure as the top returned object, but
-    containing information for the second-best result.  Can be `null`.
-
-### `emphasize.registerLanguage(name, syntax)`
-
-Register a syntax.  Useful in the browser or with custom grammars.
-
-###### Parameters
-
-*   `name` (`string`)
-    — Name of language;
-*   `syntax` (`Function`)
-    — Syntax highlighter, see [`highlight.js`s docs][syntax] for more
-    information.
+You can pass in a `sheet` ([`Sheet?`][sheet], optional) directly or as
+`options.sheet` to configure the theme.
 
 ### `Sheet`
 
-A sheet is an object mapping [**highlight.js** classes][classes] to
+A sheet is an object mapping [highlight.js classes][classes] to
 functions.  The `hljs-` prefix must not be used in
 those classes.  The “descendant selector” (a space) is supported.
 
@@ -211,14 +161,18 @@ emphasize.highlight('js', '"use strict";').value;
 
 [sheet]: #sheet
 
-[highlight]: https://github.com/isagalaev/highlight.js
+[hljs]: https://github.com/isagalaev/highlight.js
 
 [lowlight]: https://github.com/wooorm/lowlight
 
 [names]: https://github.com/isagalaev/highlight.js/blob/master/docs/css-classes-reference.rst#language-names-and-aliases
 
-[syntax]: https://github.com/isagalaev/highlight.js/blob/master/docs/language-guide.rst
-
 [classes]: http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html
 
 [styles]: https://github.com/chalk/chalk#styles
+
+[register-language]: https://github.com/wooorm/lowlight#lowregisterlanguagename-syntax
+
+[highlight]: https://github.com/wooorm/lowlight#lowhighlightlanguage-value-options
+
+[highlight-auto]: https://github.com/wooorm/lowlight#lowhighlightautovalue-options

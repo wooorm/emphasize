@@ -12,6 +12,7 @@ deploy:
       node: '9.0'
       tags: true
   - provider: releases
+    skip_cleanup: true
     api_key:
         secure: MROn2agMmU0BTXdTha/Wgc/aCdoC0Zft59hR2eefCV1gLA6NCM7IZvfBdIACxAJebaYw85ePjLiy75MCu9kdo02/W3eejEKosHPLtrqxTVVPVsz5GVblz9mWyEEVbXpVcF69QvD0VBXAsc8hqcnccnrlzJoJkpuvzRMjCazA/2vjpNjLUswWejVJZPRtG8h7QCH2ASDFLsgSrA8xInGe/LWZs1XDHNHEEa3mvzfd0UFa/AQVV0BwqUuRA/LPq+1AnS+tWqQFqQlbiXwLnAyWLVNV4/2gsTshPrlOz60YxNCU1nyUiUbbsP+NIOaatZ+nWCeiN8AcgnwYAe1vjUfWr7IjjlGdpwV6Wu2d06blAC+lNQy10McSbjW6w2FrEeHb/bIDLqsN3akk1LPiDj7ztWydd70ExLNKiDljBrmJLyAJPMglt+ny6RtSQZCB025SXF5U1Kgv6OT83yckBSjdqBAEIJblLRnH1tLUf27+3c7nsR8rNhQLfttzALddtzqGAFC3Htvjf9O/rQV84ds60SDxOSpqJOIzCHZYfd+w3nxlJE6oiL9eknlVk5/pvEnI1BDRchQixxbNcyexIcs62gjg7mp8PsuvwMNN0ZpUps7FQ7AIqqsICVMM459vTvPwph3vS2uBPQMCnZBSVepqiYtCEmvCsZZEpaah1qFWxv0=
     file:

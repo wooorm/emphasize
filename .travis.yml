@@ -1,7 +1,7 @@
 language: node_js
 node_js:
 - '4.0'
-- '8.0'
+- '9.0'
 after_script: bash <(curl -s https://codecov.io/bash)
 deploy:
   - provider: npm
@@ -9,7 +9,7 @@ deploy:
     api_key:
         secure: CZGXfZzumU36BwPRW6M1eR9w5KdTEf8WZ/g1uPZCMzCq+7mrvdLZk32vSpv7MDeUZBY2lJt/M4c/DgXcub5tTOny3rvFzbEawIVfQtS8oeUJB5BZ6j3m3hlUAA2PB663RY1Tg6jV4ZY7mYE8cfCYoRXvKEPenQBjo7URiQMXVFNxXhezT4DEZxRxggDG46G90dwbWVCb/dBw+LriGWd2ZrP6kGrsoiusJFNC//yePH0zmfntdB0Qz6WVIEz4h1FkzubqIl0xUIvAPqKSjUjvzIM4dn12uPefIbsMcOx5j0CPC/7XE+lCEsRWLSqHTrYl0E6x+wPUKl4iWvkXynPlPwh+iAfM0PM7pWDubGhibOllfAwmNpplrybtuogcr8dxNWgtgnP1lz3HB6WxmhEe7wCGeQIxhdrdmbvUi0vrGIrLL8nFf0OEqiHgz722Nl2TT0djRuWZGnFug++NQd9SByWXQR6/4ONUxDf8SKAd4Wh4DAtoA32mMxolC1ZfhFSsojya96U7s45Fy1KztFd9Zij72jjhKuiShsgIJA3ivQGRqOQEC+KJEZcb1O5R8syA6cOVOeL96Nr93y9TN4PN7PiGDxe5151Avx1CMKoWVs73OE0JxzgkOnGZ/lGv606tAu9Bt7EwRfSEu/7XNowUXZrDNOYlsy41eH6OktxxOoc=
     on:
-      node: '4.0'
+      node: '9.0'
       tags: true
   - provider: releases
     api_key:
@@ -19,4 +19,4 @@ deploy:
       - "emphasize.min.js"
     on:
       tags: true
-      node: '8.0'
+      node: '9.0'

@@ -1,14 +1,5 @@
-/**
- * @author Titus Wormer
- * @copyright 2016 Titus Wormer
- * @license MIT
- * @module emphasize
- * @fileoverview Syntax highlighting in ANSI.
- */
-
 'use strict';
 
-/* Expose. */
 var emphasize = module.exports = require('./lib/core.js');
 
 emphasize.registerLanguage('1c', require('highlight.js/lib/languages/1c'));

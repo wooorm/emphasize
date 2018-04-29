@@ -5,3 +5,4 @@ coverage/
 node_modules/
 emphasize.js
 emphasize.min.js
+yarn.lock

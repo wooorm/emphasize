@@ -11,7 +11,7 @@
     "highlight",
     "highlighting"
   ],
-  "repository": "https://github.com/wooorm/emphasize",
+  "repository": "wooorm/emphasize",
   "bugs": "https://github.com/wooorm/emphasize/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [

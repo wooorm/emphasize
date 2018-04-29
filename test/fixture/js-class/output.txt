@@ -5,7 +5,7 @@
     [32mvar[39m c = [31mSymbol[39m([36m'cost'[39m);
     [32mthis[39m[c] = cost;
 
-    [32mthis[39m.intro = [36m`This is a car runs at
-      [35m${speed}[36m.`[39m;
+    [32mthis[39m.intro = [36m`This is a car runs at[39m
+[36m      [35m${speed}[36m.`[39m;
   }
 }

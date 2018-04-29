@@ -41,12 +41,14 @@ body, .charlie, #delta {
 And `example.js` contains the following:
 
 ```javascript
-var fs = require('fs');
-var emphasize = require('emphasize');
+var fs = require('fs')
+var emphasize = require('emphasize')
 
-var doc = fs.readFileSync('./example.css', 'utf8');
+var doc = fs.readFileSync('./example.css', 'utf8')
 
-var output = emphasize.highlightAuto(doc).value;
+var output = emphasize.highlightAuto(doc).value
+
+console.log(output)
 ```
 
 Now, running `node example` yields:
@@ -130,12 +132,12 @@ Instead, require `emphasize/lib/core`, and include only the used
 highlighters.  For example:
 
 ```js
-var emphasize = require('emphasize/lib/core');
-var js = require('highlight.js/lib/languages/javascript');
+var emphasize = require('emphasize/lib/core')
+var js = require('highlight.js/lib/languages/javascript')
 
-emphasize.registerLanguage('javascript', js);
+emphasize.registerLanguage('javascript', js)
 
-emphasize.highlight('js', '"use strict";').value;
+emphasize.highlight('js', '"use strict";').value
 // '\u001b[35m"use strict"\u001b[39m;'
 ```
 

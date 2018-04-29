@@ -27,6 +27,9 @@
     "lowlight": "~1.9.0"
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.6.1",
+    "babelify": "^8.0.0",
     "browserify": "^16.0.0",
     "esmangle": "^1.0.0",
     "is-hidden": "^1.0.1",
@@ -41,7 +44,7 @@
   "scripts": {
     "generate": "node build",
     "format": "remark . -qfo && prettier --write '**/*.js' && xo --fix",
-    "build-bundle": "browserify index.js --bare -s emphasize > emphasize.js",
+    "build-bundle": "browserify index.js -o emphasize.js --bare -s emphasize -g [ babelify --presets [ \"babel-preset-env\" ] ]",
     "build-mangle": "esmangle emphasize.js > emphasize.min.js",
     "build": "npm run build-bundle && npm run build-mangle",
     "test-api": "node test",

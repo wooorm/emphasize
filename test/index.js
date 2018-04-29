@@ -79,9 +79,9 @@ test('emphasize.highlight(language, value[, sheet])', function (t) {
 
     st.deepEqual(
       result.value,
-      '\x1B[32mpublic\x1B[39m \x1B[32mvoid\x1B[39m ' +
-      '\x1B[34mmoveTo\x1B[39m(\x1B[32mint\x1B[39m x, ' +
-      '\x1B[32mint\x1B[39m y, \x1B[32mint\x1B[39m z);',
+      '\u001B[32mpublic\u001B[39m \u001B[32mvoid\u001B[39m ' +
+      '\u001B[34mmoveTo\u001B[39m(\u001B[32mint\u001B[39m x, ' +
+      '\u001B[32mint\u001B[39m y, \u001B[32mint\u001B[39m z);',
       'should return the correct sequences for the fixture'
     );
 
@@ -98,9 +98,9 @@ test('emphasize.highlight(language, value[, sheet])', function (t) {
 
     st.deepEqual(
       result.value,
-      '\x1B[1mpublic\x1B[22m \x1B[1mvoid\x1B[22m ' +
-      '\x1B[3mmoveTo\x1B[23m(\x1B[1mint\x1B[22m x, ' +
-      '\x1B[1mint\x1B[22m y, \x1B[1mint\x1B[22m z);',
+      '\u001B[1mpublic\u001B[22m \u001B[1mvoid\u001B[22m ' +
+      '\u001B[3mmoveTo\u001B[23m(\u001B[1mint\u001B[22m x, ' +
+      '\u001B[1mint\u001B[22m y, \u001B[1mint\u001B[22m z);',
       'should support custom sheets'
     );
 
@@ -174,7 +174,7 @@ test('emphasize.highlightAuto(value[, settings | sheet])', function (t) {
 
     st.deepEqual(
       result.value,
-      '\x1B[35m"use strict"\x1B[39m;',
+      '\u001B[35m"use strict"\u001B[39m;',
       'should return the correct sequences for the fixture'
     );
 
@@ -186,7 +186,7 @@ test('emphasize.highlightAuto(value[, settings | sheet])', function (t) {
 
     st.deepEqual(
       result.value,
-      '\x1b[1m"use strict"\x1b[22m;',
+      '\u001b[1m"use strict"\u001b[22m;',
       'should support custom sheets'
     );
 

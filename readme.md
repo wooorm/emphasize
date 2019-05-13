@@ -159,7 +159,7 @@ emphasize.highlight('js', '"use strict";').value
 
 [license]: license
 
-[author]: http://wooorm.com
+[author]: https://wooorm.com
 
 [sheet]: #sheet
 
@@ -169,7 +169,7 @@ emphasize.highlight('js', '"use strict";').value
 
 [names]: https://github.com/isagalaev/highlight.js/blob/master/docs/css-classes-reference.rst#language-names-and-aliases
 
-[classes]: http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html
+[classes]: https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html
 
 [styles]: https://github.com/chalk/chalk#styles
 

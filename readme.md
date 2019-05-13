@@ -1,4 +1,9 @@
-# emphasize [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
+# emphasize
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][size-badge]][size]
 
 Syntax highlighting in ANSI.  Like [highlight.js][hljs] (through [lowlight][]),
 but for the terminal.
@@ -147,13 +152,21 @@ emphasize.highlight('js', '"use strict";').value
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/wooorm/emphasize.svg
+[build-badge]: https://img.shields.io/travis/wooorm/emphasize.svg
 
-[travis]: https://travis-ci.org/wooorm/emphasize
+[build]: https://travis-ci.org/wooorm/emphasize
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/emphasize.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/wooorm/emphasize.svg
 
-[codecov]: https://codecov.io/github/wooorm/emphasize
+[coverage]: https://codecov.io/github/wooorm/emphasize
+
+[downloads-badge]: https://img.shields.io/npm/dm/emphasize.svg
+
+[downloads]: https://www.npmjs.com/package/emphasize
+
+[size-badge]: https://img.shields.io/bundlephobia/minzip/emphasize.svg
+
+[size]: https://bundlephobia.com/result?p=emphasize
 
 [npm]: https://docs.npmjs.com/cli/install
 

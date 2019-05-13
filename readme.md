@@ -8,7 +8,7 @@
 Syntax highlighting in ANSI.  Like [highlight.js][hljs] (through [lowlight][]),
 but for the terminal.
 
-`emphasize` supports [all 176 syntaxes][names] of [highlight.js][hljs].
+`emphasize` supports [all 185 syntaxes][names] of [highlight.js][hljs].
 
 ## Installation
 

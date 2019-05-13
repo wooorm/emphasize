@@ -43,7 +43,7 @@
   },
   "scripts": {
     "generate": "node build",
-    "format": "remark . -qfo && prettier --write '**/*.js' && xo --fix",
+    "format": "remark . -qfo && prettier --write \"**/*.js\" && xo --fix",
     "build-bundle": "browserify index.js -o emphasize.js --bare -s emphasize -g [ babelify --presets [ \"babel-preset-env\" ] ]",
     "build-mangle": "esmangle emphasize.js > emphasize.min.js",
     "build": "npm run build-bundle && npm run build-mangle",

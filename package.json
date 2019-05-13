@@ -69,11 +69,7 @@
     "prettier": true,
     "esnext": false,
     "rules": {
-      "unicorn/escape-case": "off",
-      "no-var": "off",
-      "prefer-arrow-callback": "off",
-      "guard-for-in": "off",
-      "no-multi-assign": "off"
+      "guard-for-in": "off"
     },
     "ignore": [
       "emphasize.js",

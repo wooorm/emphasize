@@ -181,7 +181,7 @@ test('emphasize.highlightAuto(value[, settings | sheet])', function(t) {
 
     st.deepEqual(
       result.value,
-      '\u001b[1m"use strict"\u001b[22m;',
+      '\u001B[1m"use strict"\u001B[22m;',
       'should support custom sheets'
     )
 

@@ -5,20 +5,20 @@
 [![Downloads][downloads-badge]][downloads]
 [![Size][size-badge]][size]
 
-Syntax highlighting in ANSI.  Like [highlight.js][hljs] (through [lowlight][]),
-but for the terminal.
+ANSI syntax highlighting in for your terminal.
+Like [highlight.js][hljs] (through [lowlight][]).
 
 `emphasize` supports [all 185 syntaxes][names] of [highlight.js][hljs].
 
-## Installation
+## Install
 
 [npm][]:
 
-```bash
+```sh
 npm install emphasize
 ```
 
-## Usage
+## Use
 
 Say `example.css` looks as follows:
 
@@ -45,7 +45,7 @@ body, .charlie, #delta {
 
 And `example.js` contains the following:
 
-```javascript
+```js
 var fs = require('fs')
 var emphasize = require('emphasize')
 
@@ -87,33 +87,35 @@ And looks as follows:
 
 ### `emphasize.registerLanguage(name, syntax)`
 
-Register a syntax.  Like [`low.registerLanguage()`][register-language].
+Register a syntax.
+Like [`low.registerLanguage()`][register-language].
 
 ### `emphasize.highlight(language, value[, sheet])`
 
-Highlight `value` as a `language` grammar.  Like [`low.highlight()`][highlight],
-but the return object’s `value` property is a string instead of HAST nodes.
+Highlight `value` as a `language` grammar.
+Like [`low.highlight()`][highlight], but the return object’s `value` property is
+a string instead of hast nodes.
 
 You can pass in a `sheet` ([`Sheet?`][sheet], optional) to configure the theme.
 
 ### `emphasize.highlightAuto(value[, sheet | options])`
 
-Highlight `value` by guessing its grammar.  Like
-[`low.highlightAuto()`][highlight-auto], but the return object’s `value`
-property is a string instead of HAST nodes.
+Highlight `value` by guessing its grammar.
+Like [`low.highlightAuto()`][highlight-auto], but the return object’s `value`
+property is a string instead of hast nodes.
 
 You can pass in a `sheet` ([`Sheet?`][sheet], optional) directly or as
 `options.sheet` to configure the theme.
 
 ### `Sheet`
 
-A sheet is an object mapping [highlight.js classes][classes] to
-functions.  The `hljs-` prefix must not be used in
-those classes.  The “descendant selector” (a space) is supported.
+A sheet is an object mapping [highlight.js classes][classes] to functions.
+The `hljs-` prefix must not be used in those classes.
+The “descendant selector” (a space) is supported.
 
-Those functions receive a value (`string`), which they should wrap
-in ANSI sequences, and return.  For convenience, [chalk’s chaining of
-styles][styles] is suggested.
+Those functions receive a value (`string`), which they should wrap in ANSI
+sequences, and return.
+For convenience, [chalk’s chaining of styles][styles] is suggested.
 
 An abbreviated example is as follows:
 
@@ -130,11 +132,11 @@ An abbreviated example is as follows:
 
 ## Emphasize in the browser
 
-I do not suggest using the pre-built files or requiring `emphasize` in
-the browser as that would include a *very* large file.
+Do not require `emphasize` in the browser as that would include a *very* large
+file.
 
-Instead, require `emphasize/lib/core`, and include only the used
-highlighters.  For example:
+Instead, require `emphasize/lib/core`, and include only the used highlighters.
+For example:
 
 ```js
 var emphasize = require('emphasize/lib/core')

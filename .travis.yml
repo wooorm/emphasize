@@ -3,13 +3,3 @@ node_js:
   - lts/dubnium
   - node
 after_script: bash <(curl -s https://codecov.io/bash)
-deploy:
-  provider: releases
-  skip_cleanup: true
-  api_key:
-    secure: ECWsJYz0FzzL4cfrLChRnKw0/oKxoTe80+EqYuSeI/a66WUUOi/QnSnaJ/ftLo4b7Y1cbrP+cS341ao8LpCsU5A4BBkA2KY+FnFjyhn5ozKMkJFoRatAe4eTJ9MOYEZ7CrralIrRcQp2uncFpIxcHZmHB2Hn0ZTWXIcenDWpGdGGcH9MfD4DkClHasCvRG6TtHj5kVWPE3G2+TNfSSeWQu9p1+bqFuZpCmU3hFvjp1+k+AD9x+WywYhMmo3YhBZiCR8eeWzcQzl7bjfUDsuX4mB2W7bTD9Hy7N+HNjP9CcR9KJHXTWGWG/NLPWVLkiKATMmZcO7AH+J9XEM1s8qVh2rfK5/yEbnCZoaFVLP9nM+3wwjboYI/WjmpcB1VZSOQXQmt14QSErOzx48na04hmUXtv8n6wuvzeCdJmuhKvQyDMQjMPQtyo3fgA3jt3El6FlHunyGMT7yWsohfYR05Iuba0i1JU1pwZ3ucZa1boWXyOmXA5O6ntmieQMhoK8fM4xbk24oEYG+KMD/XmM6uh2BwC2uRzCrOYgMm4e06veGjLCIP0BPI9Ks04Lpta6R15IQ2D5ni7HMHb40+tJim14h/zjDYYg5Um77326OKr/4ETB6c1SLp+V/TSpA5XyFXgOL5i7vY/YnmqX+oKJ7yV5jaAY9SQkhy3VLYKFqqgR8=
-  file:
-    - 'emphasize.js'
-    - 'emphasize.min.js'
-  on:
-    tags: true

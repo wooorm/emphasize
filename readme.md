@@ -131,7 +131,7 @@ An abbreviated example is as follows:
 ## Emphasize in the browser
 
 I do not suggest using the pre-built files or requiring `emphasize` in
-the browser as that would include a _very_ large file.
+the browser as that would include a *very* large file.
 
 Instead, require `emphasize/lib/core`, and include only the used
 highlighters.  For example:

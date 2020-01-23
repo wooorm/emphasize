@@ -8,7 +8,7 @@ var doc = fs.readFileSync(require.resolve('lowlight'), 'utf8')
 
 doc = doc
   .replace(/\blow(light)?\b/g, 'emphasize')
-  .replace(/Virtual syntax[\s\S]+?\./, 'Syntax highlighting in ANSI.')
+  .replace(/Virtual syntax[\s\S]+?\./, 'ANSI syntax highlighting.')
 
 fs.writeFileSync(path.join('index.js'), doc)
 

@@ -1,7 +1,7 @@
 {
   "name": "emphasize",
   "version": "2.1.0",
-  "description": "Syntax highlighting in ANSI, for the terminal",
+  "description": "ANSI syntax highlighting for the terminal",
   "license": "MIT",
   "keywords": [
     "syntax",

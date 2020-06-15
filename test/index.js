@@ -56,25 +56,25 @@ test('emphasize.highlight(language, value[, sheet])', function(t) {
     'should silently ignore illegals #1'
   )
 
-  t.test('fixture', function(st) {
+  t.test('fixture', function(t) {
     var result = emphasize.highlight(
       'java',
       ['public void moveTo(int x, int y, int z);'].join('\n')
     )
 
-    st.equal(
+    t.equal(
       result.relevance,
       6,
       'should return the correct relevance for the fixture'
     )
 
-    st.equal(
+    t.equal(
       result.language,
       'java',
       'should return the correct language for the fixture'
     )
 
-    st.deepEqual(
+    t.deepEqual(
       result.value,
       '\u001B[32mpublic\u001B[39m \u001B[32mvoid\u001B[39m ' +
         '\u001B[34mmoveTo\u001B[39m(\u001B[32mint\u001B[39m x, ' +
@@ -82,10 +82,10 @@ test('emphasize.highlight(language, value[, sheet])', function(t) {
       'should return the correct sequences for the fixture'
     )
 
-    st.end()
+    t.end()
   })
 
-  t.test('custom `sheet`', function(st) {
+  t.test('custom `sheet`', function(t) {
     var result = emphasize.highlight(
       'java',
       ['public void moveTo(int x, int y, int z);'].join('\n'),
@@ -95,7 +95,7 @@ test('emphasize.highlight(language, value[, sheet])', function(t) {
       }
     )
 
-    st.deepEqual(
+    t.deepEqual(
       result.value,
       '\u001B[1mpublic\u001B[22m \u001B[1mvoid\u001B[22m ' +
         '\u001B[3mmoveTo\u001B[23m(\u001B[1mint\u001B[22m x, ' +
@@ -103,7 +103,7 @@ test('emphasize.highlight(language, value[, sheet])', function(t) {
       'should support custom sheets'
     )
 
-    st.end()
+    t.end()
   })
 
   t.end()
@@ -134,61 +134,61 @@ test('emphasize.highlightAuto(value[, settings | sheet])', function(t) {
     'should return an empty string for `value` when empty'
   )
 
-  t.test('fixture', function(st) {
+  t.test('fixture', function(t) {
     var result = emphasize.highlightAuto('"use strict";')
 
-    st.equal(
+    t.equal(
       result.relevance,
       10,
       'should return the correct relevance for the fixture'
     )
 
-    st.equal(
+    t.equal(
       result.language,
       'javascript',
       'should return the correct language for the fixture'
     )
 
-    st.equal(
+    t.equal(
       typeof result.secondBest,
       'object',
       'should return a `secondBest` result'
     )
 
-    st.equal(
+    t.equal(
       result.secondBest.language,
       'abnf',
       'should return a `secondBest` `language`'
     )
 
-    st.equal(
+    t.equal(
       result.secondBest.relevance,
       2,
       'should return a `secondBest` `relevance`'
     )
 
-    st.deepEqual(
+    t.deepEqual(
       result.value,
       '\u001B[35m"use strict"\u001B[39m;',
       'should return the correct sequences for the fixture'
     )
 
-    st.end()
+    t.end()
   })
 
-  t.test('custom `sheet`', function(st) {
+  t.test('custom `sheet`', function(t) {
     var result = emphasize.highlightAuto('"use strict";', {meta: chalk.bold})
 
-    st.deepEqual(
+    t.deepEqual(
       result.value,
       '\u001B[1m"use strict"\u001B[22m;',
       'should support custom sheets'
     )
 
-    st.end()
+    t.end()
   })
 
-  t.test('custom `subset`', function(st) {
+  t.test('custom `subset`', function(t) {
     var result = emphasize.highlightAuto('"use strict";', {subset: ['java']})
 
     t.equal(result.language, 'java', 'should support a given custom `subset`')
@@ -205,7 +205,7 @@ test('emphasize.highlightAuto(value[, settings | sheet])', function(t) {
       'should ignore unregistered subset languages (#2)'
     )
 
-    st.end()
+    t.end()
   })
 
   t.end()

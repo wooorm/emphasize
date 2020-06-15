@@ -34,11 +34,11 @@
     "is-hidden": "^1.0.0",
     "negate": "^1.0.0",
     "nyc": "^15.0.0",
-    "prettier": "^1.0.0",
-    "remark-cli": "^7.0.0",
-    "remark-preset-wooorm": "^6.0.0",
-    "tape": "^4.0.0",
-    "xo": "^0.25.0"
+    "prettier": "^2.0.0",
+    "remark-cli": "^8.0.0",
+    "remark-preset-wooorm": "^7.0.0",
+    "tape": "^5.0.0",
+    "xo": "^0.32.0"
   },
   "scripts": {
     "generate": "node build",
@@ -65,6 +65,7 @@
     "prettier": true,
     "esnext": false,
     "rules": {
+      "unicorn/no-fn-reference-in-iterator": "off",
       "guard-for-in": "off"
     },
     "ignore": [

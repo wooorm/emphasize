@@ -22,7 +22,7 @@
       }),
       ...state.slice(action.index + [36m1[39m)
     ]
-  [32mdefault[39m:
+  [33mdefault[39m:
     [32mreturn[39m state;
   }
 }

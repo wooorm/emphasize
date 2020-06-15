@@ -11,9 +11,7 @@ var emphasize = require('..')
 var read = fs.readFileSync
 var join = path.join
 
-var FIXTURES = path.join(__dirname, 'fixture')
-var INPUT = 'input.txt'
-var OUTPUT = 'output.txt'
+var base = path.join(__dirname, 'fixture')
 
 test('emphasize.highlight(language, value[, sheet])', function(t) {
   var result = emphasize.highlight('js', '')
@@ -213,23 +211,22 @@ test('emphasize.highlightAuto(value[, settings | sheet])', function(t) {
 
 test('fixtures', function(t) {
   fs
-    .readdirSync(FIXTURES)
+    .readdirSync(base)
     .filter(negate(hidden))
-    .forEach(function(filePath) {
-      var parts = filePath.split('-')
-      subtest(parts[0], parts.slice(1).join('-'), filePath)
+    .forEach(function(dirname) {
+      var filePath = join(base, dirname)
+      var parts = dirname.split('-')
+      var language = parts[0]
+      var name = parts.slice(1).join('-')
+      var input = String(read(join(filePath, 'input.txt'))).trim()
+      var output = String(read(join(filePath, 'output.txt'))).trim()
+
+      t.deepEqual(
+        emphasize.highlight(language, input).value,
+        output,
+        'should correctly process ' + name + ' in ' + language
+      )
     })
-
-  function subtest(language, name, directory) {
-    var input = read(join(FIXTURES, directory, INPUT), 'utf8').trim()
-    var output = read(join(FIXTURES, directory, OUTPUT), 'utf8').trim()
-
-    t.deepEqual(
-      emphasize.highlight(language, input).value,
-      output,
-      'should correctly process ' + name + ' in ' + language
-    )
-  }
 
   t.end()
 })

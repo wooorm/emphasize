@@ -2,3 +2,5 @@ coverage/
 emphasize.js
 emphasize.min.js
 index.js
+*.json
+*.md

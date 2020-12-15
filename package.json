@@ -27,7 +27,7 @@
   ],
   "dependencies": {
     "chalk": "^4.0.0",
-    "highlight.js": "~10.2.0",
+    "highlight.js": "~10.4.1",
     "lowlight": "~1.15.0"
   },
   "devDependencies": {

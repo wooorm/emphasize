@@ -1,6 +1,6 @@
 [32mfunction[39m [34m$initHighlight[39m(block, cls) {
   [32mtry[39m {
-    [32mif[39m (cls.search([36m/\bno\-highlight\b/[39m) != [36m-1[39m)
+    [32mif[39m (cls.search([36m/\bno\-highlight\b/[39m) != -[36m1[39m)
       [32mreturn[39m process(block, [36mtrue[39m, [36m0x0F[39m) +
              [36m' class=""'[39m;
   } [32mcatch[39m (e) {

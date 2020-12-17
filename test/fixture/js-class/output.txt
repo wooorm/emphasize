@@ -1,5 +1,5 @@
 [32mclass[39m [33mCar[39m [32mextends[39m [33mVehicle[39m {
-  [32mconstructor[39m(speed, cost) {
+  [34mconstructor[39m(speed, cost) {
     [31msuper[39m(speed);
 
     [32mvar[39m c = [31mSymbol[39m([36m'cost'[39m);

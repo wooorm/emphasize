@@ -27,8 +27,8 @@
   ],
   "dependencies": {
     "chalk": "^4.0.0",
-    "highlight.js": "~10.2.0",
-    "lowlight": "~1.15.0"
+    "highlight.js": "~10.4.0",
+    "lowlight": "~1.17.0"
   },
   "devDependencies": {
     "is-hidden": "^1.0.0",
@@ -66,6 +66,7 @@
     "esnext": false,
     "rules": {
       "unicorn/no-fn-reference-in-iterator": "off",
+      "unicorn/prefer-optional-catch-binding": "off",
       "guard-for-in": "off"
     },
     "ignore": [

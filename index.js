@@ -25,8 +25,6 @@ emphasize.registerLanguage(
   require('highlight.js/lib/languages/applescript')
 )
 emphasize.registerLanguage('arcade', require('highlight.js/lib/languages/arcade'))
-emphasize.registerLanguage('c-like', require('highlight.js/lib/languages/c-like'))
-emphasize.registerLanguage('cpp', require('highlight.js/lib/languages/cpp'))
 emphasize.registerLanguage('arduino', require('highlight.js/lib/languages/arduino'))
 emphasize.registerLanguage('armasm', require('highlight.js/lib/languages/armasm'))
 emphasize.registerLanguage('xml', require('highlight.js/lib/languages/xml'))
@@ -47,6 +45,7 @@ emphasize.registerLanguage(
   'brainfuck',
   require('highlight.js/lib/languages/brainfuck')
 )
+emphasize.registerLanguage('c-like', require('highlight.js/lib/languages/c-like'))
 emphasize.registerLanguage('c', require('highlight.js/lib/languages/c'))
 emphasize.registerLanguage('cal', require('highlight.js/lib/languages/cal'))
 emphasize.registerLanguage(
@@ -67,6 +66,7 @@ emphasize.registerLanguage(
 )
 emphasize.registerLanguage('coq', require('highlight.js/lib/languages/coq'))
 emphasize.registerLanguage('cos', require('highlight.js/lib/languages/cos'))
+emphasize.registerLanguage('cpp', require('highlight.js/lib/languages/cpp'))
 emphasize.registerLanguage('crmsh', require('highlight.js/lib/languages/crmsh'))
 emphasize.registerLanguage('crystal', require('highlight.js/lib/languages/crystal'))
 emphasize.registerLanguage('csharp', require('highlight.js/lib/languages/csharp'))
@@ -185,6 +185,10 @@ emphasize.registerLanguage('n1ql', require('highlight.js/lib/languages/n1ql'))
 emphasize.registerLanguage('nginx', require('highlight.js/lib/languages/nginx'))
 emphasize.registerLanguage('nim', require('highlight.js/lib/languages/nim'))
 emphasize.registerLanguage('nix', require('highlight.js/lib/languages/nix'))
+emphasize.registerLanguage(
+  'node-repl',
+  require('highlight.js/lib/languages/node-repl')
+)
 emphasize.registerLanguage('nsis', require('highlight.js/lib/languages/nsis'))
 emphasize.registerLanguage(
   'objectivec',

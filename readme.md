@@ -154,9 +154,9 @@ emphasize.highlight('js', '"use strict";').value
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/wooorm/emphasize.svg
+[build-badge]: https://github.com/wooorm/emphasize/workflows/main/badge.svg
 
-[build]: https://travis-ci.org/wooorm/emphasize
+[build]: https://github.com/wooorm/emphasize/actions
 
 [coverage-badge]: https://img.shields.io/codecov/c/github/wooorm/emphasize.svg
 

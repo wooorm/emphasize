@@ -219,11 +219,19 @@ test('fixtures', function(t) {
       var language = parts[0]
       var name = parts.slice(1).join('-')
       var input = String(read(join(filePath, 'input.txt'))).trim()
-      var output = String(read(join(filePath, 'output.txt'))).trim()
+      var actual = emphasize.highlight(language, input).value
+      var expected
+
+      try {
+        expected = String(read(join(filePath, 'output.txt'))).trim()
+      } catch (_) {
+        expected = actual
+        fs.writeFileSync(join(filePath, 'output.txt'), actual + '\n')
+      }
 
       t.deepEqual(
-        emphasize.highlight(language, input).value,
-        output,
+        actual,
+        expected,
         'should correctly process ' + name + ' in ' + language
       )
     })

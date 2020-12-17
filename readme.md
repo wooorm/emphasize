@@ -8,7 +8,7 @@
 ANSI syntax highlighting in for your terminal.
 Like [highlight.js][hljs] (through [lowlight][]).
 
-`emphasize` supports [all 185 syntaxes][names] of [highlight.js][hljs].
+`emphasize` supports [all 190 syntaxes][names] of [highlight.js][hljs].
 
 ## Install
 
@@ -178,11 +178,11 @@ emphasize.highlight('js', '"use strict";').value
 
 [sheet]: #sheet
 
-[hljs]: https://github.com/isagalaev/highlight.js
+[hljs]: https://github.com/highlightjs/highlight.js
 
 [lowlight]: https://github.com/wooorm/lowlight
 
-[names]: https://github.com/isagalaev/highlight.js/blob/master/docs/css-classes-reference.rst#language-names-and-aliases
+[names]: https://github.com/highlightjs/highlight.js/blob/master/SUPPORTED_LANGUAGES.md
 
 [classes]: https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html
 

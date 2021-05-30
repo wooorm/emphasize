@@ -1,23 +1,15 @@
-'use strict'
+import fs from 'fs'
+import path from 'path'
+import test from 'tape'
+import chalk from 'chalk'
+import {isHidden} from 'is-hidden'
+import {emphasize} from '../lib/all.js'
 
-var fs = require('fs')
-var path = require('path')
-var test = require('tape')
-var chalk = require('chalk')
-var negate = require('negate')
-var hidden = require('is-hidden')
-var emphasize = require('..')
-
-var read = fs.readFileSync
-var join = path.join
-
-var base = path.join(__dirname, 'fixture')
-
-test('emphasize.highlight(language, value[, sheet])', function(t) {
+test('emphasize.highlight(language, value[, sheet])', function (t) {
   var result = emphasize.highlight('js', '')
 
   t.throws(
-    function() {
+    function () {
       emphasize.highlight(true)
     },
     /Expected `string` for name, got `true`/,
@@ -25,7 +17,7 @@ test('emphasize.highlight(language, value[, sheet])', function(t) {
   )
 
   t.throws(
-    function() {
+    function () {
       emphasize.highlight('js', true)
     },
     /Expected `string` for value, got `true`/,
@@ -33,7 +25,7 @@ test('emphasize.highlight(language, value[, sheet])', function(t) {
   )
 
   t.throws(
-    function() {
+    function () {
       emphasize.highlight('fooscript', '')
     },
     /^Error: Unknown language: `fooscript` is not registered$/,
@@ -54,10 +46,10 @@ test('emphasize.highlight(language, value[, sheet])', function(t) {
     'should silently ignore illegals #1'
   )
 
-  t.test('fixture', function(t) {
+  t.test('fixture', function (t) {
     var result = emphasize.highlight(
       'java',
-      ['public void moveTo(int x, int y, int z);'].join('\n')
+      'public void moveTo(int x, int y, int z);'
     )
 
     t.equal(
@@ -74,30 +66,23 @@ test('emphasize.highlight(language, value[, sheet])', function(t) {
 
     t.deepEqual(
       result.value,
-      '\u001B[32mpublic\u001B[39m \u001B[32mvoid\u001B[39m ' +
-        '\u001B[34mmoveTo\u001B[39m(\u001B[32mint\u001B[39m x, ' +
-        '\u001B[32mint\u001B[39m y, \u001B[32mint\u001B[39m z);',
+      '\u001B[32mpublic\u001B[39m \u001B[32mvoid\u001B[39m \u001B[34mmoveTo\u001B[39m(\u001B[33mint\u001B[39m x, \u001B[33mint\u001B[39m y, \u001B[33mint\u001B[39m z);',
       'should return the correct sequences for the fixture'
     )
 
     t.end()
   })
 
-  t.test('custom `sheet`', function(t) {
+  t.test('custom `sheet`', function (t) {
     var result = emphasize.highlight(
       'java',
-      ['public void moveTo(int x, int y, int z);'].join('\n'),
-      {
-        keyword: chalk.bold,
-        title: chalk.italic
-      }
+      'public void moveTo(int x, int y, int z);',
+      {keyword: chalk.bold, title: chalk.italic}
     )
 
     t.deepEqual(
       result.value,
-      '\u001B[1mpublic\u001B[22m \u001B[1mvoid\u001B[22m ' +
-        '\u001B[3mmoveTo\u001B[23m(\u001B[1mint\u001B[22m x, ' +
-        '\u001B[1mint\u001B[22m y, \u001B[1mint\u001B[22m z);',
+      '\u001B[1mpublic\u001B[22m \u001B[1mvoid\u001B[22m \u001B[3mmoveTo\u001B[23m(int x, int y, int z);',
       'should support custom sheets'
     )
 
@@ -107,11 +92,11 @@ test('emphasize.highlight(language, value[, sheet])', function(t) {
   t.end()
 })
 
-test('emphasize.highlightAuto(value[, settings | sheet])', function(t) {
+test('emphasize.highlightAuto(value[, settings | sheet])', function (t) {
   var result = emphasize.highlightAuto('')
 
   t.throws(
-    function() {
+    function () {
       emphasize.highlightAuto(true)
     },
     /Expected `string` for value, got `true`/,
@@ -132,7 +117,7 @@ test('emphasize.highlightAuto(value[, settings | sheet])', function(t) {
     'should return an empty string for `value` when empty'
   )
 
-  t.test('fixture', function(t) {
+  t.test('fixture', function (t) {
     var result = emphasize.highlightAuto('"use strict";')
 
     t.equal(
@@ -147,24 +132,6 @@ test('emphasize.highlightAuto(value[, settings | sheet])', function(t) {
       'should return the correct language for the fixture'
     )
 
-    t.equal(
-      typeof result.secondBest,
-      'object',
-      'should return a `secondBest` result'
-    )
-
-    t.equal(
-      result.secondBest.language,
-      'typescript',
-      'should return a `secondBest` `language`'
-    )
-
-    t.equal(
-      result.secondBest.relevance,
-      10,
-      'should return a `secondBest` `relevance`'
-    )
-
     t.deepEqual(
       result.value,
       '\u001B[35m"use strict"\u001B[39m;',
@@ -174,7 +141,7 @@ test('emphasize.highlightAuto(value[, settings | sheet])', function(t) {
     t.end()
   })
 
-  t.test('custom `sheet`', function(t) {
+  t.test('custom `sheet`', function (t) {
     var result = emphasize.highlightAuto('"use strict";', {meta: chalk.bold})
 
     t.deepEqual(
@@ -186,12 +153,12 @@ test('emphasize.highlightAuto(value[, settings | sheet])', function(t) {
     t.end()
   })
 
-  t.test('custom `subset`', function(t) {
+  t.test('custom `subset`', function (t) {
     var result = emphasize.highlightAuto('"use strict";', {subset: ['java']})
 
     t.equal(result.language, 'java', 'should support a given custom `subset`')
 
-    t.doesNotThrow(function() {
+    t.doesNotThrow(function () {
       result = emphasize.highlightAuto('"use strict";', {
         subset: ['fooscript', 'javascript']
       })
@@ -209,32 +176,40 @@ test('emphasize.highlightAuto(value[, settings | sheet])', function(t) {
   t.end()
 })
 
-test('fixtures', function(t) {
-  fs
-    .readdirSync(base)
-    .filter(negate(hidden))
-    .forEach(function(dirname) {
-      var filePath = join(base, dirname)
-      var parts = dirname.split('-')
-      var language = parts[0]
-      var name = parts.slice(1).join('-')
-      var input = String(read(join(filePath, 'input.txt'))).trim()
-      var actual = emphasize.highlight(language, input).value
-      var expected
+test('fixtures', function (t) {
+  const files = fs.readdirSync(path.join('test', 'fixture'))
+  let index = -1
 
-      try {
-        expected = String(read(join(filePath, 'output.txt'))).trim()
-      } catch (_) {
-        expected = actual
-        fs.writeFileSync(join(filePath, 'output.txt'), actual + '\n')
-      }
+  while (++index < files.length) {
+    const dirname = files[index]
 
-      t.deepEqual(
-        actual,
-        expected,
-        'should correctly process ' + name + ' in ' + language
-      )
-    })
+    if (isHidden(dirname)) continue
+
+    const filePath = path.join('test', 'fixture', dirname)
+    const parts = dirname.split('-')
+    const language = parts[0]
+    const name = parts.slice(1).join('-')
+    const input = String(
+      fs.readFileSync(path.join(filePath, 'input.txt'))
+    ).trim()
+    const actual = emphasize.highlight(language, input).value
+    let expected
+
+    try {
+      expected = String(
+        fs.readFileSync(path.join(filePath, 'output.txt'))
+      ).trim()
+    } catch (_) {
+      expected = actual
+      fs.writeFileSync(path.join(filePath, 'output.txt'), actual + '\n')
+    }
+
+    t.deepEqual(
+      actual,
+      expected,
+      'should correctly process ' + name + ' in ' + language
+    )
+  }
 
   t.end()
 })

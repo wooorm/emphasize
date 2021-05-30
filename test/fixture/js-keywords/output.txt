@@ -1,13 +1,13 @@
 [32mfunction[39m [34m$initHighlight[39m(block, cls) {
   [32mtry[39m {
-    [32mif[39m (cls.search([36m/\bno\-highlight\b/[39m) != -[36m1[39m)
-      [32mreturn[39m process(block, [36mtrue[39m, [36m0x0F[39m) +
+    [32mif[39m (cls.[34msearch[39m([36m/\bno\-highlight\b/[39m) != -[36m1[39m)
+      [32mreturn[39m [34mprocess[39m(block, [36mtrue[39m, [36m0x0F[39m) +
              [36m' class=""'[39m;
   } [32mcatch[39m (e) {
     [90m/* handle exception */[39m
   }
   [32mfor[39m ([32mvar[39m i = [36m0[39m / [36m2[39m; i < classes.length; i++) {
-    [32mif[39m (checkCondition(classes[i]) === [36mundefined[39m)
+    [32mif[39m ([34mcheckCondition[39m(classes[i]) === [36mundefined[39m)
       [32mreturn[39m [36m/\d+[\s/]/g[39m;
   }
 }

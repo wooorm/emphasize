@@ -1,15 +1,19 @@
-'use strict'
+import fs from 'fs'
+import path from 'path'
+import chalk from 'chalk'
 
-var fs = require('fs')
-var path = require('path')
-var chalk = require('chalk')
+fs.writeFileSync(
+  path.join('lib', 'all.js'),
+  String(
+    fs.readFileSync(path.join('node_modules', 'lowlight', 'lib', 'all.js'))
+  ).replace(/\blowlight\b/g, 'emphasize')
+)
 
-var doc = fs.readFileSync(require.resolve('lowlight'), 'utf8')
+fs.writeFileSync(
+  path.join('lib', 'common.js'),
+  String(
+    fs.readFileSync(path.join('node_modules', 'lowlight', 'lib', 'common.js'))
+  ).replace(/\blowlight\b/g, 'emphasize')
+)
 
-doc = doc
-  .replace(/\blow(light)?\b/g, 'emphasize')
-  .replace(/Virtual syntax[\s\S]+?\./, 'ANSI syntax highlighting.')
-
-fs.writeFileSync(path.join('index.js'), doc)
-
-console.log(chalk.green('✓') + ' wrote `index.js`')
+console.log(chalk.green('✓') + ' wrote `all`, `common`')

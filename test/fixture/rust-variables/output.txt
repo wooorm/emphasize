@@ -1,3 +1,3 @@
-[32mlet[39m foo;
-[32mlet[39m [32mmut[39m bar;
-[32mlet[39m _foo_bar;
+[32mlet[39m [33mfoo[39m;
+[32mlet[39m [32mmut [39m[33mbar[39m;
+[32mlet[39m [33m_foo_bar[39m;

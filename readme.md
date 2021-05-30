@@ -12,6 +12,9 @@ Like [highlight.js][hljs] (through [lowlight][]).
 
 ## Install
 
+This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
+Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
+
 [npm][]:
 
 ```sh
@@ -46,12 +49,12 @@ body, .charlie, #delta {
 And `example.js` contains the following:
 
 ```js
-var fs = require('fs')
-var emphasize = require('emphasize')
+import fs from 'fs'
+import {emphasize} from 'emphasize'
 
-var doc = fs.readFileSync('./example.css', 'utf8')
+const doc = String(fs.readFileSync('example.css'))
 
-var output = emphasize.highlightAuto(doc).value
+const output = emphasize.highlightAuto(doc).value
 
 console.log(output)
 ```
@@ -84,6 +87,9 @@ And looks as follows:
 ![Screenshot showing the code in terminal](screenshot.png)
 
 ## API
+
+This package exports the following identifiers: `emphasize`.
+There is no default export.
 
 ### `emphasize.registerLanguage(name, syntax)`
 
@@ -127,7 +133,7 @@ An abbreviated example is as follows:
   'emphasis': chalk.italic,
   'strong': chalk.bold,
   'formula': chalk.inverse
-};
+}
 ```
 
 ## Emphasize in the browser

@@ -21,37 +21,33 @@
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
   ],
+  "sideEffects": false,
+  "type": "module",
+  "main": "index.js",
   "files": [
-    "index.js",
-    "lib/core.js"
+    "lib/core.js",
+    "index.js"
   ],
   "dependencies": {
     "chalk": "^4.0.0",
-    "highlight.js": "~10.4.0",
-    "lowlight": "~1.17.0"
+    "highlight.js": "~11.0.0",
+    "lowlight": "~2.0.0"
   },
   "devDependencies": {
-    "is-hidden": "^1.0.0",
-    "negate": "^1.0.0",
-    "nyc": "^15.0.0",
+    "c8": "^7.0.0",
+    "is-hidden": "^2.0.0",
     "prettier": "^2.0.0",
     "remark-cli": "^9.0.0",
     "remark-preset-wooorm": "^8.0.0",
     "tape": "^5.0.0",
-    "xo": "^0.36.0"
+    "xo": "^0.39.0"
   },
   "scripts": {
     "generate": "node build",
     "format": "remark . -qfo && prettier . -w --loglevel warn && xo --fix",
-    "test-api": "FORCE_COLOR=\"true\" node test",
-    "test-coverage": "FORCE_COLOR=\"true\" nyc --reporter lcov tape test/index.js",
+    "test-api": "FORCE_COLOR=\"true\" node test/index.js",
+    "test-coverage": "FORCE_COLOR=\"true\" c8 --check-coverage --branches 100 --functions 100 --lines 100 --statements 100 --reporter lcov node test/index.js",
     "test": "npm run generate && npm run format && npm run test-coverage"
-  },
-  "nyc": {
-    "check-coverage": true,
-    "lines": 100,
-    "functions": 100,
-    "branches": 100
   },
   "prettier": {
     "tabWidth": 2,
@@ -65,14 +61,13 @@
     "prettier": true,
     "esnext": false,
     "rules": {
+      "node/file-extension-in-import": "off",
+      "no-var": "off",
+      "prefer-arrow-callback": "off",
       "unicorn/no-fn-reference-in-iterator": "off",
       "unicorn/prefer-optional-catch-binding": "off",
       "guard-for-in": "off"
-    },
-    "ignore": [
-      "emphasize.js",
-      "index.js"
-    ]
+    }
   },
   "remarkConfig": {
     "plugins": [

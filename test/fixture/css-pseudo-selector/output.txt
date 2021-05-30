@@ -1,2 +1,2 @@
-[32mli[39m[35m:not(.red)[39m{}
-[32mli[39m[35m:not(.red)[39m[35m:not(.green)[39m{}
+[32mli[39m[35m:not[39m([34m.red[39m){}
+[32mli[39m[35m:not[39m([34m.red[39m)[35m:not[39m([34m.green[39m){}

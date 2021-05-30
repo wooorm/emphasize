@@ -2,7 +2,7 @@
   [32mswitch[39m (action.type) {
   [32mcase[39m [36m'CHANGE_VISIBLE_FILTER'[39m:
     [32mreturn[39m action.filter;
-  [32mdefault[39m:
+  [33mdefault[39m:
     [32mreturn[39m state;
   }
 }
@@ -16,11 +16,11 @@
     }];
   [32mcase[39m [36m'COMPLETE_TODO'[39m:
     [32mreturn[39m [
-      ...state.slice([36m0[39m, action.index),
-      [31mObject[39m.assign({}, state[action.index], {
+      ...state.[34mslice[39m([36m0[39m, action.index),
+      [34mObject[39m.[34massign[39m({}, state[action.index], {
         [33mcompleted[39m: [36mtrue[39m
       }),
-      ...state.slice(action.index + [36m1[39m)
+      ...state.[34mslice[39m(action.index + [36m1[39m)
     ]
   [33mdefault[39m:
     [32mreturn[39m state;
@@ -28,5 +28,5 @@
 }
 
 [32mimport[39m { combineReducers, createStore } [32mfrom[39m [36m'redux'[39m;
-[32mlet[39m reducer = combineReducers({ visibleTodoFilter, todos });
-[32mlet[39m store = createStore(reducer);
+[32mlet[39m reducer = [34mcombineReducers[39m({ visibleTodoFilter, todos });
+[32mlet[39m store = [34mcreateStore[39m(reducer);

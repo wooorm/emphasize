@@ -8,7 +8,12 @@
 ANSI syntax highlighting in for your terminal.
 Like [highlight.js][hljs] (through [lowlight][]).
 
-`emphasize` supports [all 190 syntaxes][names] of [highlight.js][hljs].
+`emphasize` supports [all 191 syntaxes][names] of [highlight.js][hljs].
+There are three builds of `emphasize`:
+
+*   `lib/core.js` — 0 languages
+*   `lib/common.js` (default) — 35 languages
+*   `lib/all.js` — 191 languages
 
 ## Install
 
@@ -100,7 +105,7 @@ Like [`low.registerLanguage()`][register-language].
 
 Highlight `value` as a `language` grammar.
 Like [`low.highlight()`][highlight], but the return object’s `value` property is
-a string instead of hast nodes.
+a string instead of a hast root.
 
 You can pass in a `sheet` ([`Sheet?`][sheet], optional) to configure the theme.
 
@@ -108,7 +113,7 @@ You can pass in a `sheet` ([`Sheet?`][sheet], optional) to configure the theme.
 
 Highlight `value` by guessing its grammar.
 Like [`low.highlightAuto()`][highlight-auto], but the return object’s `value`
-property is a string instead of hast nodes.
+property is a string instead of a hast root.
 
 You can pass in a `sheet` ([`Sheet?`][sheet], optional) directly or as
 `options.sheet` to configure the theme.
@@ -120,7 +125,7 @@ The `hljs-` prefix must not be used in those classes.
 The “descendant selector” (a space) is supported.
 
 Those functions receive a value (`string`), which they should wrap in ANSI
-sequences, and return.
+sequences and return.
 For convenience, [chalk’s chaining of styles][styles] is suggested.
 
 An abbreviated example is as follows:
@@ -138,21 +143,12 @@ An abbreviated example is as follows:
 
 ## Emphasize in the browser
 
-Do not require `emphasize` in the browser as that would include a *very* large
-file.
+If you’re using `emphasize/lib/core.js`, no syntaxes are included.
+Some syntaxes are included if you import `emphasize` (or
+`emphasize/lib/common.js`).
+All syntaxes are available through `emphasize/lib/all.js`
 
-Instead, require `emphasize/lib/core`, and include only the used highlighters.
-For example:
-
-```js
-var emphasize = require('emphasize/lib/core')
-var js = require('highlight.js/lib/languages/javascript')
-
-emphasize.registerLanguage('javascript', js)
-
-emphasize.highlight('js', '"use strict";').value
-// '\u001b[35m"use strict"\u001b[39m;'
-```
+See [Syntaxes in `lowlight`][syntaxes] for which syntaxes are included where.
 
 ## License
 
@@ -195,6 +191,8 @@ emphasize.highlight('js', '"use strict";').value
 [styles]: https://github.com/chalk/chalk#styles
 
 [register-language]: https://github.com/wooorm/lowlight#lowregisterlanguagename-syntax
+
+[syntaxes]: https://github.com/wooorm/lowlight#syntaxes
 
 [highlight]: https://github.com/wooorm/lowlight#lowhighlightlanguage-value-options
 

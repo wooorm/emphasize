@@ -5,11 +5,11 @@ import chalk from 'chalk'
 import {isHidden} from 'is-hidden'
 import {emphasize} from '../lib/all.js'
 
-test('emphasize.highlight(language, value[, sheet])', function (t) {
-  var result = emphasize.highlight('js', '')
+test('emphasize.highlight(language, value[, sheet])', (t) => {
+  const result = emphasize.highlight('js', '')
 
   t.throws(
-    function () {
+    () => {
       // @ts-expect-error runtime.
       emphasize.highlight(true)
     },
@@ -18,7 +18,7 @@ test('emphasize.highlight(language, value[, sheet])', function (t) {
   )
 
   t.throws(
-    function () {
+    () => {
       // @ts-expect-error runtime.
       emphasize.highlight('js', true)
     },
@@ -27,7 +27,7 @@ test('emphasize.highlight(language, value[, sheet])', function (t) {
   )
 
   t.throws(
-    function () {
+    () => {
       emphasize.highlight('fooscript', '')
     },
     /^Error: Unknown language: `fooscript` is not registered$/,
@@ -48,8 +48,8 @@ test('emphasize.highlight(language, value[, sheet])', function (t) {
     'should silently ignore illegals #1'
   )
 
-  t.test('fixture', function (t) {
-    var result = emphasize.highlight(
+  t.test('fixture', (t) => {
+    const result = emphasize.highlight(
       'java',
       'public void moveTo(int x, int y, int z);'
     )
@@ -75,8 +75,8 @@ test('emphasize.highlight(language, value[, sheet])', function (t) {
     t.end()
   })
 
-  t.test('custom `sheet`', function (t) {
-    var result = emphasize.highlight(
+  t.test('custom `sheet`', (t) => {
+    const result = emphasize.highlight(
       'java',
       'public void moveTo(int x, int y, int z);',
       {keyword: chalk.bold, title: chalk.italic}
@@ -94,11 +94,11 @@ test('emphasize.highlight(language, value[, sheet])', function (t) {
   t.end()
 })
 
-test('emphasize.highlightAuto(value[, settings | sheet])', function (t) {
-  var result = emphasize.highlightAuto('')
+test('emphasize.highlightAuto(value[, settings | sheet])', (t) => {
+  const result = emphasize.highlightAuto('')
 
   t.throws(
-    function () {
+    () => {
       // @ts-expect-error runtime.
       emphasize.highlightAuto(true)
     },
@@ -120,8 +120,8 @@ test('emphasize.highlightAuto(value[, settings | sheet])', function (t) {
     'should return an empty string for `value` when empty'
   )
 
-  t.test('fixture', function (t) {
-    var result = emphasize.highlightAuto('"use strict";')
+  t.test('fixture', (t) => {
+    const result = emphasize.highlightAuto('"use strict";')
 
     t.equal(
       result.relevance,
@@ -144,8 +144,8 @@ test('emphasize.highlightAuto(value[, settings | sheet])', function (t) {
     t.end()
   })
 
-  t.test('custom `sheet`', function (t) {
-    var result = emphasize.highlightAuto('"use strict";', {meta: chalk.bold})
+  t.test('custom `sheet`', (t) => {
+    const result = emphasize.highlightAuto('"use strict";', {meta: chalk.bold})
 
     t.deepEqual(
       result.value,
@@ -156,12 +156,12 @@ test('emphasize.highlightAuto(value[, settings | sheet])', function (t) {
     t.end()
   })
 
-  t.test('custom `subset`', function (t) {
-    var result = emphasize.highlightAuto('"use strict";', {subset: ['java']})
+  t.test('custom `subset`', (t) => {
+    let result = emphasize.highlightAuto('"use strict";', {subset: ['java']})
 
     t.equal(result.language, 'java', 'should support a given custom `subset`')
 
-    t.doesNotThrow(function () {
+    t.doesNotThrow(() => {
       result = emphasize.highlightAuto('"use strict";', {
         subset: ['fooscript', 'javascript']
       })
@@ -179,7 +179,7 @@ test('emphasize.highlightAuto(value[, settings | sheet])', function (t) {
   t.end()
 })
 
-test('fixtures', function (t) {
+test('fixtures', (t) => {
   const files = fs.readdirSync(path.join('test', 'fixture'))
   let index = -1
 

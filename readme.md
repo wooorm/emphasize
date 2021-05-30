@@ -67,22 +67,22 @@ console.log(output)
 Now, running `node example` yields:
 
 ```txt
-@\u001b[32mfont-face\u001b[39m {
-  \u001b[33mfont-family\u001b[39m: Alpha;
-  \u001b[33msrc\u001b[39m: \u001b[31murl\u001b[39m(\u001b[36m'Bravo.otf'\u001b[39m);
+\x1B[32m@font-face\x1B[39m {
+  \x1B[33mfont-family\x1B[39m: Alpha;
+  \x1B[33msrc\x1B[39m: \x1B[31murl\x1B[39m(\x1B[36m'Bravo.otf'\x1B[39m);
 }
 
-\u001b[32mbody\u001b[39m, \u001b[34m.charlie\u001b[39m, \u001b[34m#delta\u001b[39m {
-  \u001b[33mcolor\u001b[39m: \u001b[36m#bada55\u001b[39m;
-  \u001b[33mbackground-color\u001b[39m: \u001b[31mrgba\u001b[39m(33, 33, 33, 0.33);
-  \u001b[33mfont-family\u001b[39m: \u001b[36m\"Alpha\"\u001b[39m, sans-serif;
+\x1B[32mbody\x1B[39m, \x1B[34m.charlie\x1B[39m, \x1B[34m#delta\x1B[39m {
+  \x1B[33mcolor\x1B[39m: \x1B[36m#bada55\x1B[39m;
+  \x1B[33mbackground-color\x1B[39m: \x1B[31mrgba\x1B[39m(\x1B[36m33\x1B[39m, \x1B[36m33\x1B[39m, \x1B[36m33\x1B[39m, \x1B[36m0.33\x1B[39m);
+  \x1B[33mfont-family\x1B[39m: \x1B[36m"Alpha"\x1B[39m, sans-serif;
 }
 
-@\u001b[32mimport\u001b[39m url(echo.css);
+\x1B[32m@import\x1B[39m url(echo.css);
 
-@\u001b[32mmedia\u001b[39m print {
-  \u001b[32ma\u001b[39m\u001b[35m[href^=http]\u001b[39m\u001b[35m::after\u001b[39m {
-    \u001b[33mcontent\u001b[39m: \u001b[31mattr\u001b[39m(href)
+\x1B[32m@media\x1B[39m print {
+  \x1B[32ma\x1B[39m\x1B[35m[href^=http]\x1B[39m\x1B[35m::after\x1B[39m {
+    \x1B[33mcontent\x1B[39m: \x1B[31mattr\x1B[39m(href)
   }
 }
 ```

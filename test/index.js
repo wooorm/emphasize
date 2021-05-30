@@ -10,6 +10,7 @@ test('emphasize.highlight(language, value[, sheet])', function (t) {
 
   t.throws(
     function () {
+      // @ts-expect-error runtime.
       emphasize.highlight(true)
     },
     /Expected `string` for name, got `true`/,
@@ -18,6 +19,7 @@ test('emphasize.highlight(language, value[, sheet])', function (t) {
 
   t.throws(
     function () {
+      // @ts-expect-error runtime.
       emphasize.highlight('js', true)
     },
     /Expected `string` for value, got `true`/,
@@ -97,6 +99,7 @@ test('emphasize.highlightAuto(value[, settings | sheet])', function (t) {
 
   t.throws(
     function () {
+      // @ts-expect-error runtime.
       emphasize.highlightAuto(true)
     },
     /Expected `string` for value, got `true`/,
@@ -193,13 +196,14 @@ test('fixtures', function (t) {
       fs.readFileSync(path.join(filePath, 'input.txt'))
     ).trim()
     const actual = emphasize.highlight(language, input).value
+    /** @type {string} */
     let expected
 
     try {
       expected = String(
         fs.readFileSync(path.join(filePath, 'output.txt'))
       ).trim()
-    } catch (_) {
+    } catch {
       expected = actual
       fs.writeFileSync(path.join(filePath, 'output.txt'), actual + '\n')
     }

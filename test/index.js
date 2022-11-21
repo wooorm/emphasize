@@ -2,11 +2,15 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs/promises'
 import process from 'node:process'
 import test from 'node:test'
-import chalk from 'chalk'
+// `unicorn` is wrong here.
+// eslint-disable-next-line unicorn/import-style
+import {Chalk} from 'chalk'
 import {isHidden} from 'is-hidden'
 import {emphasize} from '../lib/all.js'
 
 /* eslint-disable no-await-in-loop */
+
+const chalk = new Chalk({level: 2})
 
 test('emphasize.highlight(language, value[, sheet])', async (t) => {
   const result = emphasize.highlight('js', '')

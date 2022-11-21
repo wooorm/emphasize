@@ -1,10 +1,11 @@
-import fs from 'node:fs'
-import path from 'node:path'
+import fs from 'node:fs/promises'
 import process from 'node:process'
 import test from 'tape'
 import chalk from 'chalk'
 import {isHidden} from 'is-hidden'
 import {emphasize} from '../lib/all.js'
+
+/* eslint-disable no-await-in-loop */
 
 test('emphasize.highlight(language, value[, sheet])', (t) => {
   const result = emphasize.highlight('js', '')
@@ -180,8 +181,9 @@ test('emphasize.highlightAuto(value[, settings | sheet])', (t) => {
   t.end()
 })
 
-test('fixtures', (t) => {
-  const files = fs.readdirSync(path.join('test', 'fixture'))
+test('fixtures', async (t) => {
+  const base = new URL('fixture/', import.meta.url)
+  const files = await fs.readdir(base)
   let index = -1
 
   while (++index < files.length) {
@@ -189,13 +191,11 @@ test('fixtures', (t) => {
 
     if (isHidden(dirname)) continue
 
-    const filePath = path.join('test', 'fixture', dirname)
+    const folder = new URL(dirname + '/', base)
     const parts = dirname.split('-')
     const language = parts[0]
     const name = parts.slice(1).join('-')
-    const input = String(
-      fs.readFileSync(path.join(filePath, 'input.txt'))
-    ).trim()
+    const input = String(await fs.readFile(new URL('input.txt', folder))).trim()
     const actual = emphasize.highlight(language, input).value
     /** @type {string} */
     let expected
@@ -205,12 +205,10 @@ test('fixtures', (t) => {
         throw new Error('Updating')
       }
 
-      expected = String(
-        fs.readFileSync(path.join(filePath, 'output.txt'))
-      ).trim()
+      expected = String(await fs.readFile(new URL('output.txt', folder))).trim()
     } catch {
       expected = actual
-      fs.writeFileSync(path.join(filePath, 'output.txt'), actual + '\n')
+      await fs.writeFile(new URL('output.txt', folder), actual + '\n')
     }
 
     t.deepEqual(
@@ -222,3 +220,5 @@ test('fixtures', (t) => {
 
   t.end()
 })
+
+/* eslint-enable no-await-in-loop */

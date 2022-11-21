@@ -6,24 +6,67 @@
 [![Size][size-badge]][size]
 
 ANSI syntax highlighting in for your terminal.
-Like [highlight.js][hljs] (through [lowlight][]).
 
-`emphasize` supports [all 191 syntaxes][names] of [highlight.js][hljs].
-There are three builds of `emphasize`:
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`emphasize.highlight(language, value[, sheet])`](#emphasizehighlightlanguage-value-sheet)
+    *   [`emphasize.highlightAuto(value[, sheet | options])`](#emphasizehighlightautovalue-sheet--options)
+    *   [`emphasize.registerLanguage(language, syntax)`](#emphasizeregisterlanguagelanguage-syntax)
+    *   [`emphasize.registerAlias(language, alias)`](#emphasizeregisteraliaslanguage-alias)
+    *   [`emphasize.registered(aliasOrlanguage)`](#emphasizeregisteredaliasorlanguage)
+    *   [`emphasize.listLanguages()`](#emphasizelistlanguages)
+    *   [`Sheet`](#sheet)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package wraps [highlight.js][highlight] through [`lowlight`][lowlight] to
+output ANSI syntax highlighting instead of HTML.
+
+`highlight.js`, through lowlight, supports 190+ programming languages.
+Supporting all of them requires a lot of code.
+That’s why there are three entry points for `emphasize`:
 
 *   `lib/core.js` — 0 languages
-*   `lib/common.js` (default) — 35 languages
-*   `lib/all.js` — 191 languages
+*   `lib/common.js` (default) — 37 languages
+*   `lib/all.js` — 192 languages
+
+Bundled, minified, and gzipped, those are roughly 9.7 kB, 47 kB, and 290 kB.
+
+## When should I use this?
+
+This package is useful when you want to display code on a terminal.
 
 ## Install
 
-This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
-Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
-
-[npm][]:
+This package is [ESM only][esm].
+In Node.js (version 14.14+, 16.0+), install with [npm][]:
 
 ```sh
 npm install emphasize
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {emphasize} from 'https://esm.sh/emphasize@5'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {emphasize} from 'https://esm.sh/emphasize@5?bundle'
+</script>
 ```
 
 ## Use
@@ -51,20 +94,20 @@ body, .charlie, #delta {
 }
 ```
 
-And `example.js` contains the following:
+…and `example.js` contains the following:
 
 ```js
-import fs from 'fs'
+import fs from 'node:fs/promises'
 import {emphasize} from 'emphasize'
 
-const doc = String(fs.readFileSync('example.css'))
+const doc = String(await fs.readFile('example.css'))
 
 const output = emphasize.highlightAuto(doc).value
 
 console.log(output)
 ```
 
-Now, running `node example` yields:
+…now running `node example.js` yields:
 
 ```txt
 \x1B[32m@font-face\x1B[39m {
@@ -87,40 +130,109 @@ Now, running `node example` yields:
 }
 ```
 
-And looks as follows:
+…which looks as follows:
 
 ![Screenshot showing the code in terminal](screenshot.png)
 
 ## API
 
-This package exports the following identifiers: `emphasize`.
+This package exports the identifier `emphasize`.
 There is no default export.
-
-### `emphasize.registerLanguage(name, syntax)`
-
-Register a syntax.
-Like [`low.registerLanguage()`][register-language].
 
 ### `emphasize.highlight(language, value[, sheet])`
 
-Highlight `value` as a `language` grammar.
-Like [`low.highlight()`][highlight], but the return object’s `value` property is
-a string instead of a hast root.
+Highlight `value` (code) as `language` (name).
 
-You can pass in a `sheet` ([`Sheet?`][sheet], optional) to configure the theme.
+###### Parameters
+
+*   `language` (`string`)
+    — programming language [name][names]
+*   `value` (`string`)
+    — code to highlight
+*   `sheet` ([`Sheet?`][sheet], optional)
+    — configure the theme
+
+###### Returns
+
+`value` with ANSI sequences (`string`).
 
 ### `emphasize.highlightAuto(value[, sheet | options])`
 
-Highlight `value` by guessing its grammar.
-Like [`low.highlightAuto()`][highlight-auto], but the return object’s `value`
-property is a string instead of a hast root.
+Highlight `value` (code) and guess its programming language.
 
-You can pass in a `sheet` ([`Sheet?`][sheet], optional) directly or as
-`options.sheet` to configure the theme.
+###### Parameters
+
+*   `value` (`string`)
+    — code to highlight
+*   `options.sheet` ([`Sheet?`][sheet], optional)
+    — configure the theme
+*   `options.subset` (`Array<string>`, default: all registered language names)
+    — list of allowed languages
+
+###### Returns
+
+`value` with ANSI sequences (`string`).
+
+### `emphasize.registerLanguage(language, syntax)`
+
+Register a language.
+
+###### Parameters
+
+*   `language` (`string`)
+    — programming language name
+*   `syntax` ([`HighlightSyntax`][syntax])
+    — `highlight.js` syntax
+
+###### Note
+
+`highlight.js` operates as a singleton: once you register a language in one
+place, it’ll be available everywhere.
+
+### `emphasize.registerAlias(language, alias)`
+
+Register aliases for already registered languages.
+
+###### Signatures
+
+*   `registerAlias(language, alias|list)`
+*   `registerAlias(aliases)`
+
+###### Parameters
+
+*   `language` (`string`)
+    — programming language [name][names]
+*   `alias` (`string`)
+    — new aliases for the programming language
+*   `list` (`Array<string>`)
+    — list of aliases
+*   `aliases` (`Record<language, alias|list>`)
+    — map of `language`s to `alias`es or `list`s
+
+### `emphasize.registered(aliasOrlanguage)`
+
+Check whether an `alias` or `language` is registered.
+
+###### Parameters
+
+*   `aliasOrlanguage` (`string`)
+    — [name][names] of a registered language or alias
+
+###### Returns
+
+Whether `aliasOrlanguage` is registered (`boolean`).
+
+### `emphasize.listLanguages()`
+
+List registered languages.
+
+###### Returns
+
+Names of registered language (`Array<string>`).
 
 ### `Sheet`
 
-A sheet is an object mapping [highlight.js classes][classes] to functions.
+A sheet is an object mapping [`highlight.js` classes][classes] to functions.
 The `hljs-` prefix must not be used in those classes.
 The “descendant selector” (a space) is supported.
 
@@ -141,14 +253,25 @@ An abbreviated example is as follows:
 }
 ```
 
-## Emphasize in the browser
+## Types
 
-If you’re using `emphasize/lib/core.js`, no syntaxes are included.
-Some syntaxes are included if you import `emphasize` (or
-`emphasize/lib/common.js`).
-All syntaxes are available through `emphasize/lib/all.js`
+This package is fully typed with [TypeScript][].
+It exports the additional types `Sheet` and `AutoOptions`.
 
-See [Syntaxes in `lowlight`][syntaxes] for which syntaxes are included where.
+## Compatibility
+
+This package is at least compatible with all maintained versions of Node.js.
+As of now, that is Node.js 14.14+ and 16.0+.
+It also works in Deno and modern browsers.
+
+## Security
+
+This package is safe.
+
+## Contribute
+
+Yes please!
+See [How to Contribute to Open Source][contribute].
 
 ## License
 
@@ -174,26 +297,28 @@ See [Syntaxes in `lowlight`][syntaxes] for which syntaxes are included where.
 
 [npm]: https://docs.npmjs.com/cli/install
 
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[typescript]: https://www.typescriptlang.org
+
+[contribute]: https://opensource.guide/how-to-contribute/
+
 [license]: license
 
 [author]: https://wooorm.com
 
 [sheet]: #sheet
 
-[hljs]: https://github.com/highlightjs/highlight.js
+[highlight]: https://github.com/highlightjs/highlight.js
+
+[syntax]: https://github.com/highlightjs/highlight.js/blob/main/docs/language-guide.rst
 
 [lowlight]: https://github.com/wooorm/lowlight
 
-[names]: https://github.com/highlightjs/highlight.js/blob/master/SUPPORTED_LANGUAGES.md
+[names]: https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md
 
 [classes]: https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html
 
 [styles]: https://github.com/chalk/chalk#styles
-
-[register-language]: https://github.com/wooorm/lowlight#lowregisterlanguagename-syntax
-
-[syntaxes]: https://github.com/wooorm/lowlight#syntaxes
-
-[highlight]: https://github.com/wooorm/lowlight#lowhighlightlanguage-value-options
-
-[highlight-auto]: https://github.com/wooorm/lowlight#lowhighlightautovalue-options

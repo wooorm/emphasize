@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import process from 'node:process'
 import test from 'tape'
 import chalk from 'chalk'
 import {isHidden} from 'is-hidden'
@@ -200,6 +201,10 @@ test('fixtures', (t) => {
     let expected
 
     try {
+      if ('UPDATE' in process.env) {
+        throw new Error('Updating')
+      }
+
       expected = String(
         fs.readFileSync(path.join(filePath, 'output.txt'))
       ).trim()

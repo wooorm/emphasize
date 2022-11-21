@@ -5,7 +5,7 @@
 [![Downloads][downloads-badge]][downloads]
 [![Size][size-badge]][size]
 
-ANSI syntax highlighting in for your terminal.
+ANSI syntax highlighting for your terminal.
 
 ## Contents
 
@@ -58,14 +58,14 @@ npm install emphasize
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import {emphasize} from 'https://esm.sh/emphasize@5'
+import {emphasize} from 'https://esm.sh/emphasize@6'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import {emphasize} from 'https://esm.sh/emphasize@5?bundle'
+  import {emphasize} from 'https://esm.sh/emphasize@6?bundle'
 </script>
 ```
 

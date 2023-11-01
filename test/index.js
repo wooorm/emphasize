@@ -20,7 +20,7 @@ test('emphasize.highlight(language, value[, sheet])', async (t) => {
       // @ts-expect-error runtime.
       emphasize.highlight(true)
     },
-    /Expected `string` for name, got `true`/,
+    /expected `string` as `name`/,
     'should throw when not given `string` for `name`'
   )
 
@@ -29,7 +29,7 @@ test('emphasize.highlight(language, value[, sheet])', async (t) => {
       // @ts-expect-error runtime.
       emphasize.highlight('js', true)
     },
-    /Expected `string` for value, got `true`/,
+    /expected `string` as `value`/,
     'should throw when not given `string` for `value`'
   )
 
@@ -107,7 +107,7 @@ test('emphasize.highlightAuto(value[, settings | sheet])', async (t) => {
       // @ts-expect-error runtime.
       emphasize.highlightAuto(true)
     },
-    /Expected `string` for value, got `true`/,
+    /expected `string` as `value`/,
     'should throw when not given a string'
   )
 
@@ -119,8 +119,8 @@ test('emphasize.highlightAuto(value[, settings | sheet])', async (t) => {
 
   assert.equal(
     result.language,
-    null,
-    'should return `null` for `language` when empty'
+    undefined,
+    'should return `undefined` for `language` when empty'
   )
 
   assert.deepEqual(

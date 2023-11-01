@@ -3,13 +3,13 @@ import fs from 'node:fs/promises'
 import process from 'node:process'
 import test from 'node:test'
 import {Chalk} from 'chalk'
-import {all, common, createEmphasize} from '../index.js'
+import {all, common, createEmphasize} from 'emphasize'
 
 const chalk = new Chalk({level: 2})
 
 test('emphasize', async function (t) {
   await t.test('should expose the public api', async function () {
-    assert.deepEqual(Object.keys(await import('../index.js')).sort(), [
+    assert.deepEqual(Object.keys(await import('emphasize')).sort(), [
       'all',
       'common',
       'createEmphasize'

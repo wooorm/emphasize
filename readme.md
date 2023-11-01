@@ -138,13 +138,14 @@ This package exports the identifiers
 [`all`][api-all],
 [`common`][api-common],
 and [`createEmphasize`][api-create-emphasize].
+There is no default export.
+
 It exports the [TypeScript][] types
 [`AutoOptions`][api-auto-options],
 [`LanguageFn`][api-language-fn],
 [`Result`][api-result],
 [`Sheet`][api-sheet],
 and [`Style`][api-style].
-There is no default export.
 
 ### `all`
 

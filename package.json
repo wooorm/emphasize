@@ -27,7 +27,8 @@
   "files": [
     "lib/",
     "index.d.ts",
-    "index.js"
+    "index.js",
+    "index.map"
   ],
   "dependencies": {
     "@types/hast": "^3.0.0",

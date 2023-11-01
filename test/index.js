@@ -6,13 +6,14 @@ import test from 'node:test'
 // eslint-disable-next-line unicorn/import-style
 import {Chalk} from 'chalk'
 import {isHidden} from 'is-hidden'
-import {emphasize} from '../lib/all.js'
+import {all, createEmphasize} from '../index.js'
 
 /* eslint-disable no-await-in-loop */
 
 const chalk = new Chalk({level: 2})
 
 test('emphasize.highlight(language, value[, sheet])', async (t) => {
+  const emphasize = createEmphasize(all)
   const result = emphasize.highlight('js', '')
 
   assert.throws(
@@ -100,6 +101,7 @@ test('emphasize.highlight(language, value[, sheet])', async (t) => {
 })
 
 test('emphasize.highlightAuto(value[, settings | sheet])', async (t) => {
+  const emphasize = createEmphasize(all)
   const result = emphasize.highlightAuto('')
 
   assert.throws(
@@ -188,6 +190,7 @@ test('fixtures', async () => {
   const base = new URL('fixture/', import.meta.url)
   const files = await fs.readdir(base)
   let index = -1
+  const emphasize = createEmphasize(all)
 
   while (++index < files.length) {
     const dirname = files[index]

@@ -1,6 +1,8 @@
 /**
- * @typedef {import('./lib/core.js').Sheet} Sheet
+ * @typedef {import('lowlight').LanguageFn} LanguageFn
  * @typedef {import('./lib/core.js').AutoOptions} AutoOptions
+ * @typedef {import('./lib/core.js').Sheet} Sheet
  */
 
-export {emphasize} from './lib/common.js'
+export {all, common} from 'lowlight'
+export {createEmphasize} from './lib/core.js'

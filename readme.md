@@ -56,14 +56,14 @@ npm install emphasize
 In Deno with [`esm.sh`][esm-sh]:
 
 ```js
-import {all, common, createEmphasize} from 'https://esm.sh/emphasize@6'
+import {all, common, createEmphasize} from 'https://esm.sh/emphasize@7'
 ```
 
 In browsers with [`esm.sh`][esm-sh]:
 
 ```html
 <script type="module">
-  import {all, common, createEmphasize} from 'https://esm.sh/emphasize@6?bundle'
+  import {all, common, createEmphasize} from 'https://esm.sh/emphasize@7?bundle'
 </script>
 ```
 

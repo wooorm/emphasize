@@ -1,11 +1,11 @@
 # emphasize
 
-[![Build][build-badge]][build]
-[![Coverage][coverage-badge]][coverage]
-[![Downloads][downloads-badge]][downloads]
-[![Size][size-badge]][size]
+[![Build][badge-build-image]][badge-build-url]
+[![Coverage][badge-coverage-image]][badge-coverage-url]
+[![Downloads][badge-downloads-image]][badge-downloads-url]
+[![Size][badge-size-image]][badge-size-url]
 
-ANSI syntax highlighting for your terminal.
+ANSI syntax highlighting for the terminal.
 
 ## Contents
 
@@ -14,14 +14,20 @@ ANSI syntax highlighting for your terminal.
 *   [Install](#install)
 *   [Use](#use)
 *   [API](#api)
-    *   [`emphasize.highlight(language, value[, sheet])`](#emphasizehighlightlanguage-value-sheet)
-    *   [`emphasize.highlightAuto(value[, sheet | options])`](#emphasizehighlightautovalue-sheet--options)
-    *   [`emphasize.registerLanguage(language, syntax)`](#emphasizeregisterlanguagelanguage-syntax)
-    *   [`emphasize.registerAlias(language, alias)`](#emphasizeregisteraliaslanguage-alias)
-    *   [`emphasize.registered(aliasOrlanguage)`](#emphasizeregisteredaliasorlanguage)
+    *   [`all`](#all)
+    *   [`common`](#common)
+    *   [`createEmphasize(grammars?)`](#createemphasizegrammars)
+    *   [`emphasize.highlight(language, value[, options])`](#emphasizehighlightlanguage-value-options)
+    *   [`emphasize.highlightAuto(value[, options])`](#emphasizehighlightautovalue-options)
     *   [`emphasize.listLanguages()`](#emphasizelistlanguages)
+    *   [`emphasize.register(grammars)`](#emphasizeregistergrammars)
+    *   [`emphasize.registerAlias(aliases)`](#emphasizeregisteraliasaliases)
+    *   [`emphasize.registered(aliasOrLanguage)`](#emphasizeregisteredaliasorlanguage)
+    *   [`AutoOptions`](#autooptions)
+    *   [`LanguageFn`](#languagefn)
+    *   [`Result`](#result)
     *   [`Sheet`](#sheet)
-*   [Types](#types)
+    *   [`Style`](#style)
 *   [Compatibility](#compatibility)
 *   [Security](#security)
 *   [Contribute](#contribute)
@@ -29,18 +35,9 @@ ANSI syntax highlighting for your terminal.
 
 ## What is this?
 
-This package wraps [highlight.js][highlight] through [`lowlight`][lowlight] to
-output ANSI syntax highlighting instead of HTML.
-
-`highlight.js`, through lowlight, supports 190+ programming languages.
-Supporting all of them requires a lot of code.
-That’s why there are three entry points for `emphasize`:
-
-*   `lib/core.js` — 0 languages
-*   `lib/common.js` (default) — 37 languages
-*   `lib/all.js` — 192 languages
-
-Bundled, minified, and gzipped, those are roughly 9.7 kB, 47 kB, and 290 kB.
+This package wraps [`lowlight`][github-lowlight] to output ANSI syntax
+highlighting instead of HTML.
+It can support 190+ programming languages.
 
 ## When should I use this?
 
@@ -48,24 +45,25 @@ This package is useful when you want to display code on a terminal.
 
 ## Install
 
-This package is [ESM only][esm].
-In Node.js (version 14.14+, 16.0+), install with [npm][]:
+This package is [ESM only][github-gist-esm].
+In Node.js (version 16+),
+install with [npm][npm-install]:
 
 ```sh
 npm install emphasize
 ```
 
-In Deno with [`esm.sh`][esmsh]:
+In Deno with [`esm.sh`][esm-sh]:
 
 ```js
-import {emphasize} from 'https://esm.sh/emphasize@6'
+import {all, common, createEmphasize} from 'https://esm.sh/emphasize@6'
 ```
 
-In browsers with [`esm.sh`][esmsh]:
+In browsers with [`esm.sh`][esm-sh]:
 
 ```html
 <script type="module">
-  import {emphasize} from 'https://esm.sh/emphasize@6?bundle'
+  import {all, common, createEmphasize} from 'https://esm.sh/emphasize@6?bundle'
 </script>
 ```
 
@@ -136,27 +134,61 @@ console.log(output)
 
 ## API
 
-This package exports the identifier `emphasize`.
+This package exports the identifiers
+[`all`][api-all],
+[`common`][api-common],
+and [`createEmphasize`][api-create-emphasize].
+It exports the [TypeScript][] types
+[`AutoOptions`][api-auto-options],
+[`LanguageFn`][api-language-fn],
+[`Result`][api-result],
+[`Sheet`][api-sheet],
+and [`Style`][api-style].
 There is no default export.
 
-### `emphasize.highlight(language, value[, sheet])`
+### `all`
+
+Map of all (±190) grammars ([`Record<string, LanguageFn>`][api-language-fn]).
+
+See [`all` from `lowlight`][github-lowlight-all].
+
+### `common`
+
+Map of common (37) grammars ([`Record<string, LanguageFn>`][api-language-fn]).
+
+See [`common` from `lowlight`][github-lowlight-common].
+
+### `createEmphasize(grammars?)`
+
+Create a `emphasize` instance.
+
+###### Parameters
+
+*   `grammars` ([`Record<string, LanguageFn>`][api-language-fn], optional)
+    — grammars to add
+
+###### Returns
+
+Emphasize (`emphasize`).
+
+### `emphasize.highlight(language, value[, options])`
 
 Highlight `value` (code) as `language` (name).
 
 ###### Parameters
 
 *   `language` (`string`)
-    — programming language [name][names]
+    — programming language [name][github-highlight-names]
 *   `value` (`string`)
     — code to highlight
-*   `sheet` ([`Sheet?`][sheet], optional)
-    — configure the theme
+*   `sheet` ([`Sheet`][api-sheet], optional)
+    — style sheet
 
 ###### Returns
 
-`value` with ANSI sequences (`string`).
+[`Result`][api-result].
 
-### `emphasize.highlightAuto(value[, sheet | options])`
+### `emphasize.highlightAuto(value[, options])`
 
 Highlight `value` (code) and guess its programming language.
 
@@ -164,82 +196,77 @@ Highlight `value` (code) and guess its programming language.
 
 *   `value` (`string`)
     — code to highlight
-*   `options.sheet` ([`Sheet?`][sheet], optional)
-    — configure the theme
-*   `options.subset` (`Array<string>`, default: all registered language names)
-    — list of allowed languages
+*   `options` ([`AutoOptions`][api-auto-options] or [`Sheet`][api-sheet],
+    optional)
+    — configuration or style sheet
 
 ###### Returns
 
-`value` with ANSI sequences (`string`).
-
-### `emphasize.registerLanguage(language, syntax)`
-
-Register a language.
-
-###### Parameters
-
-*   `language` (`string`)
-    — programming language name
-*   `syntax` ([`HighlightSyntax`][syntax])
-    — `highlight.js` syntax
-
-###### Note
-
-`highlight.js` operates as a singleton: once you register a language in one
-place, it’ll be available everywhere.
-
-### `emphasize.registerAlias(language, alias)`
-
-Register aliases for already registered languages.
-
-###### Signatures
-
-*   `registerAlias(language, alias | list)`
-*   `registerAlias(aliases)`
-
-###### Parameters
-
-*   `language` (`string`)
-    — programming language [name][names]
-*   `alias` (`string`)
-    — new aliases for the programming language
-*   `list` (`Array<string>`)
-    — list of aliases
-*   `aliases` (`Record<language, alias | list>`)
-    — map of `language`s to `alias`es or `list`s
-
-### `emphasize.registered(aliasOrlanguage)`
-
-Check whether an `alias` or `language` is registered.
-
-###### Parameters
-
-*   `aliasOrlanguage` (`string`)
-    — [name][names] of a registered language or alias
-
-###### Returns
-
-Whether `aliasOrlanguage` is registered (`boolean`).
+[`Result`][api-result].
 
 ### `emphasize.listLanguages()`
 
 List registered languages.
 
-###### Returns
+See [`lowlight.listLanguages`][github-lowlight-list-languages].
 
-Names of registered language (`Array<string>`).
+### `emphasize.register(grammars)`
+
+Register languages.
+
+See [`lowlight.register`][github-lowlight-register].
+
+### `emphasize.registerAlias(aliases)`
+
+Register aliases.
+
+See [`lowlight.registerAlias`][github-lowlight-register-alias].
+
+### `emphasize.registered(aliasOrLanguage)`
+
+Check whether an alias or name is registered.
+
+See [`lowlight.registered`][github-lowlight-registered].
+
+### `AutoOptions`
+
+Configuration for `highlightAuto` (TypeScript type).
+
+###### Fields
+
+*   `sheet` ([`Sheet`][api-sheet], optional)
+    — sheet
+*   `subset` (`Array<string>`, default: all registered languages)
+    — list of allowed languages
+
+### `LanguageFn`
+
+Highlight.js grammar (TypeScript type).
+
+See [`LanguageFn` from `lowlight`][github-lowlight-langauge-fn].
+
+### `Result`
+
+Result (TypeScript type).
+
+###### Fields
+
+*   `language` (`string` or `undefined`)
+    — detected programming language.
+*   `relevance` (`number` or `undefined`)
+    — how sure `lowlight` is that the given code is in the language
+*   `value` (`string`)
+    — highlighted code
 
 ### `Sheet`
 
-A sheet is an object mapping [`highlight.js` classes][classes] to functions.
+Map [`highlight.js` classes][github-highlight-classes] to styles functions
+(TypeScript type).
+
 The `hljs-` prefix must not be used in those classes.
 The “descendant selector” (a space) is supported.
 
-Those functions receive a value (`string`), which they should wrap in ANSI
-sequences and return.
-For convenience, [chalk’s chaining of styles][styles] is suggested.
-
+For convenience [chalk’s chaining of styles][github-chalk-styles] is suggested.
 An abbreviated example is as follows:
 
 ```js
@@ -253,16 +280,34 @@ An abbreviated example is as follows:
 }
 ```
 
-## Types
+###### Type
 
-This package is fully typed with [TypeScript][].
-It exports the additional types `Sheet` and `AutoOptions`.
+```ts
+type Sheet = Record<string, Style>
+```
+
+### `Style`
+
+Color something (TypeScript type).
+
+###### Parameters
+
+*   `value` (`string`)
+    — input
+
+###### Returns
+
+Output (`string`).
 
 ## Compatibility
 
-This package is at least compatible with all maintained versions of Node.js.
-As of now, that is Node.js 14.14+ and 16.0+.
-It also works in Deno and modern browsers.
+This projects is compatible with maintained versions of Node.js.
+
+When we cut a new major release,
+we drop support for unmaintained versions of Node.
+This means we try to keep the current release line,
+`emphasize@6`,
+compatible with Node.js 14.
 
 ## Security
 
@@ -271,54 +316,78 @@ This package is safe.
 ## Contribute
 
 Yes please!
-See [How to Contribute to Open Source][contribute].
+See [How to Contribute to Open Source][open-source-guide-contribute].
 
 ## License
 
-[MIT][license] © [Titus Wormer][author]
+[MIT][file-license] © [Titus Wormer][wooorm]
 
 <!-- Definitions -->
 
-[build-badge]: https://github.com/wooorm/emphasize/workflows/main/badge.svg
+[api-all]: #all
 
-[build]: https://github.com/wooorm/emphasize/actions
+[api-auto-options]: #autooptions
 
-[coverage-badge]: https://img.shields.io/codecov/c/github/wooorm/emphasize.svg
+[api-common]: #common
 
-[coverage]: https://codecov.io/github/wooorm/emphasize
+[api-create-emphasize]: #createemphasizegrammars
 
-[downloads-badge]: https://img.shields.io/npm/dm/emphasize.svg
+[api-language-fn]: #languagefn
 
-[downloads]: https://www.npmjs.com/package/emphasize
+[api-result]: #result
 
-[size-badge]: https://img.shields.io/bundlephobia/minzip/emphasize.svg
+[api-sheet]: #sheet
 
-[size]: https://bundlephobia.com/result?p=emphasize
+[api-style]: #style
 
-[npm]: https://docs.npmjs.com/cli/install
+[badge-build-image]: https://github.com/wooorm/emphasize/workflows/main/badge.svg
 
-[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+[badge-build-url]: https://github.com/wooorm/emphasize/actions
 
-[esmsh]: https://esm.sh
+[badge-coverage-image]: https://img.shields.io/codecov/c/github/wooorm/emphasize.svg
+
+[badge-coverage-url]: https://codecov.io/github/wooorm/emphasize
+
+[badge-downloads-image]: https://img.shields.io/npm/dm/emphasize.svg
+
+[badge-downloads-url]: https://www.npmjs.com/package/emphasize
+
+[badge-size-image]: https://img.shields.io/bundlejs/size/emphasize
+
+[badge-size-url]: https://bundlejs.com/?q=emphasize
+
+[npm-install]: https://docs.npmjs.com/cli/install
+
+[esm-sh]: https://esm.sh
+
+[file-license]: license
+
+[github-chalk-styles]: https://github.com/chalk/chalk#styles
+
+[github-gist-esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[github-highlight-classes]: https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html
+
+[github-highlight-names]: https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md
+
+[github-lowlight]: https://github.com/wooorm/lowlight
+
+[github-lowlight-all]: https://github.com/wooorm/lowlight#all
+
+[github-lowlight-common]: https://github.com/wooorm/lowlight#common
+
+[github-lowlight-langauge-fn]: https://github.com/wooorm/lowlight#languagefn
+
+[github-lowlight-list-languages]: https://github.com/wooorm/lowlight#lowlightlistlanguages
+
+[github-lowlight-register]: https://github.com/wooorm/lowlight#lowlightregistergrammars
+
+[github-lowlight-register-alias]: https://github.com/wooorm/lowlight#lowlightregisteraliasaliases
+
+[github-lowlight-registered]: https://github.com/wooorm/lowlight#lowlightregisteredaliasorlanguage
+
+[open-source-guide-contribute]: https://opensource.guide/how-to-contribute/
 
 [typescript]: https://www.typescriptlang.org
 
-[contribute]: https://opensource.guide/how-to-contribute/
-
-[license]: license
-
-[author]: https://wooorm.com
-
-[sheet]: #sheet
-
-[highlight]: https://github.com/highlightjs/highlight.js
-
-[syntax]: https://github.com/highlightjs/highlight.js/blob/main/docs/language-guide.rst
-
-[lowlight]: https://github.com/wooorm/lowlight
-
-[names]: https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md
-
-[classes]: https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html
-
-[styles]: https://github.com/chalk/chalk#styles
+[wooorm]: https://wooorm.com

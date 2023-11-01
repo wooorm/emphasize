@@ -71,11 +71,6 @@
     "atLeast": 100,
     "detail": true,
     "ignoreCatch": true,
-    "#": "Expected `any`s",
-    "ignoreFiles": [
-      "lib/common.d.ts",
-      "lib/all.d.ts"
-    ],
     "strict": true
   },
   "xo": {
